@@ -1,0 +1,75 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+collections:
+  - name: "general"
+    label: "🌍 Trip Info"
+    files:
+      - name: "index"
+        label: "General Settings"
+        file: "src/content/general/index.yaml"
+        fields:
+          - label: "ID"
+            name: "id"
+            widget: "hidden"
+            default: "config"
+          - label: "Your Name"
+            name: "travelerName"
+            widget: "string"
+            hint: "Your first name (shown in the browser tab)"
+          - label: "Page Title"
+            name: "title"
+            widget: "string"
+            hint: "The big title at the top of the page"
+          - label: "Tagline"
+            name: "tagline"
+            widget: "string"
+            hint: "Short subtitle under the title"
+          - label: "Trip Start Date"
+            name: "startDate"
+            widget: "date"
+            format: "YYYY-MM-DD"
+            hint: "The day you left — used to calculate days on the road"
+          - label: "Current City"
+            name: "currentLocation"
+            widget: "string"
+            hint: "The city you're in right now"
+          - label: "Current Country"
+            name: "currentCountry"
+            widget: "string"
+            hint: "The country you're in right now"
+
+  - name: "counters"
+    label: "🎮 Counters"
+    files:
+      - name: "index"
+        label: "Travel Counters"
+        file: "src/content/counters/index.yaml"
+        fields:
+          - label: "ID"
+            name: "id"
+            widget: "hidden"
+            default: "index"
+          - label: "Counters"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.icon}} {{fields.label}}: {{fields.value}}"
+            fields:
+              - label: "Label"
+                name: "label"
+                widget: "string"
+                hint: "e.g. Hotel Check-ins"
+              - label: "Count"
+                name: "value"
+                widget: "number"
+                value_type: "int"
+                min: 0
+              - label: "Icon (emoji)"
+                name: "icon"
+                widget: "string"
+                hint: "Paste any emoji, e.g. 🏨"
+                pattern: ['.', "Required"]

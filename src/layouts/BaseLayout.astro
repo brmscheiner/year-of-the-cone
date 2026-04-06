@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Casey's year-long travel adventure — live stats and updates." } =
+  Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-[#050510] text-gray-200">
+    <slot />
+  </body>
+</html>
+
+<script>
+  // Redirect to /admin after Netlify Identity login
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on('init', (user: unknown) => {
+      if (!user) {
+        window.netlifyIdentity.on('login', () => {
+          document.location.href = '/admin/';
+        });
+      }
+    });
+  }
+</script>
+
+<style is:global>
+  @import '../styles/global.css';
+</style>

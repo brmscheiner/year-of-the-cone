@@ -1,0 +1,39 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { HeroSection } from '../components/HeroSection';
+import { CurrentLocation } from '../components/CurrentLocation';
+import { TripProgress } from '../components/TripProgress';
+import { StatGrid } from '../components/StatGrid';
+
+const general = await getEntry('general', 'config');
+const counters = await getEntry('counters', 'index');
+
+const { travelerName, title, tagline, startDate, currentLocation, currentCountry } = general.data;
+const { items } = counters.data;
+---
+
+<BaseLayout title={`${travelerName}'s Travels`}>
+  <main class="mx-auto max-w-5xl px-4 pb-24">
+    <HeroSection title={title} tagline={tagline} travelerName={travelerName} client:load />
+
+    <CurrentLocation location={currentLocation} country={currentCountry} client:load />
+
+    <TripProgress startDate={startDate} client:load />
+
+    <StatGrid items={items} client:load />
+
+    <footer
+      class="mt-20 border-t border-[#1a1a3e] pt-8 text-center text-[8px] tracking-widest text-gray-700"
+    >
+      <p class="mb-2">
+        STARTED {
+          new Date(startDate)
+            .toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
+            .toUpperCase()
+        }
+      </p>
+      <p>© {new Date().getFullYear()} {travelerName.toUpperCase()} — ALL RIGHTS RESERVED</p>
+    </footer>
+  </main>
+</BaseLayout>

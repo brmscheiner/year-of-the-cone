@@ -1,0 +1,26 @@
+- id: index
+  items:
+    - label: 'Hotel Check-ins'
+      value: 48
+      icon: '🏨'
+    - label: 'Countries Visited'
+      value: 12
+      icon: '🌍'
+    - label: 'Flights Taken'
+      value: 19
+      icon: '✈️'
+    - label: 'Cities Explored'
+      value: 31
+      icon: '🏙️'
+    - label: 'Coffees Consumed'
+      value: 312
+      icon: '☕'
+    - label: 'Sunsets Witnessed'
+      value: 87
+      icon: '🌅'
+    - label: 'Local Dishes Tried'
+      value: 156
+      icon: '🍜'
+    - label: 'Photos Taken'
+      value: 4821
+      icon: '📸'
