@@ -1,8 +1,7 @@
 ---
 import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { HeroSection } from '../components/HeroSection';
-import { CurrentLocation } from '../components/CurrentLocation';
+import { CharInfo } from '../components/CharInfo';
 import { TripProgress } from '../components/TripProgress';
 import { StatGrid } from '../components/StatGrid';
 import { SocialFooter } from '../components/SocialFooter';
@@ -17,16 +16,65 @@ const { items } = counters.data;
 ---
 
 <BaseLayout title="Year Of The Cone">
-  <main class="mx-auto max-w-5xl px-4 pb-4">
-    <HeroSection title={title} tagline={tagline} travelerName={travelerName} client:load />
+  <main class="mx-auto max-w-5xl px-4 py-8">
+    <div class="stone-panel overflow-hidden">
+      {/* Status bar */}
+      <div
+        class="border-stone-groove text-parchment-dim flex items-center justify-between border-b px-6 py-2 text-sm"
+      >
+        <div class="flex items-center gap-3">
+          <span class="glow-amber">⚔ ADVENTURER</span>
+          <span>·</span>
+          <span>{travelerName.toUpperCase()}</span>
+        </div>
+        <span class="blink glow-blood">● QUEST ACTIVE</span>
+      </div>
 
-    <PineconeViewer client:load />
+      {/* Title */}
+      <div class="border-stone-groove border-b px-6 py-8 text-center">
+        <h1
+          class="glow-amber flicker text-xl tracking-widest sm:text-2xl"
+          style="font-family: 'Press Start 2P', monospace"
+        >
+          {title}
+        </h1>
+        <p
+          class="text-parchment-dim mt-4 text-sm leading-loose tracking-widest"
+          style="font-family: 'Press Start 2P', monospace"
+        >
+          {tagline}
+        </p>
+      </div>
 
-    <CurrentLocation location={currentLocation} country={currentCountry} client:load />
+      {/* Portrait + character stats */}
+      <div class="border-stone-groove grid grid-cols-1 border-b md:grid-cols-[300px_1fr]">
+        {/* Portrait */}
+        <div
+          class="border-stone-groove md:border-stone-groove flex items-center justify-center border-b py-4 md:border-r md:border-b-0"
+        >
+          <PineconeViewer client:load />
+        </div>
 
-    <TripProgress startDate={startDate} client:load />
+        {/* Char info + progress */}
+        <div class="flex flex-col">
+          <div class="flex-1 px-8 py-6">
+            <CharInfo
+              travelerName={travelerName}
+              location={currentLocation}
+              country={currentCountry}
+              startDate={startDate}
+              client:only="react"
+            />
+          </div>
+          <div class="border-stone-groove border-t px-8 py-6">
+            <TripProgress startDate={startDate} client:only="react" />
+          </div>
+        </div>
+      </div>
 
-    <StatGrid items={items} client:load />
+      {/* Codex */}
+      <StatGrid items={items} client:load />
+    </div>
   </main>
 
   <SocialFooter links={socialLinks} client:load />

@@ -1,17 +1,35 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-stone-darkest: #080608;
-  --color-stone-dark: #0e0b0a;
+  /* Backgrounds — darkest to lightest */
+  --color-stone-void: #080608;
+  --color-stone-deep: #0e0b0a;
   --color-stone-mid: #1a1410;
+  --color-stone-groove: #2a1f0e;
+  --color-stone-muted: #3a2a14;
   --color-stone-border: #5c4a2a;
-  --color-stone-highlight: #8b6914;
-  --color-parchment: #c8b89a;
+
+  /* Text — warm neutrals */
   --color-parchment-dim: #7a6a52;
-  --color-amber: #d4a853;
+  --color-parchment: #c8b89a;
+
+  /* Amber / gold accent */
   --color-amber-dim: #8b6914;
+  --color-amber: #d4a853;
+
+  /* Blood red accent */
+  --color-blood-void: #2a0a0a;
+  --color-blood-border: #6b1a1a;
   --color-blood: #8b2222;
+  --color-blood-bright: #c0392b;
+
+  /* Moss green accent */
+  --color-moss-void: #0a1a08;
+  --color-moss-border: #2a4a1a;
   --color-moss: #3a5c2a;
+  --color-moss-mid: #3a6a2a;
+  --color-moss-bright: #5daa3a;
+
   --font-pixel: 'Press Start 2P', monospace;
 }
 
@@ -29,8 +47,8 @@
 }
 
 html {
-  background-color: #080608;
-  color: #c8b89a;
+  background-color: var(--color-stone-void);
+  color: var(--color-parchment);
   font-family: 'Press Start 2P', monospace;
 }
 
@@ -70,49 +88,82 @@ body::after {
 
 /* Stone panel — main border style */
 .stone-panel {
-  border: 3px solid #5c4a2a;
+  border: 3px solid var(--color-stone-border);
   box-shadow:
-    inset 1px 1px 0 #8b6914,
-    inset -1px -1px 0 #2a1f0e,
+    inset 1px 1px 0 var(--color-amber-dim),
+    inset -1px -1px 0 var(--color-stone-groove),
     0 4px 24px rgba(0, 0, 0, 0.6);
-  background-color: #0e0b0a;
+  background-color: var(--color-stone-deep);
 }
 
 .stone-panel-blood {
-  border: 3px solid #6b1a1a;
+  border: 3px solid var(--color-blood-border);
   box-shadow:
-    inset 1px 1px 0 #8b2222,
-    inset -1px -1px 0 #2a0a0a,
+    inset 1px 1px 0 var(--color-blood),
+    inset -1px -1px 0 var(--color-blood-void),
     0 4px 24px rgba(0, 0, 0, 0.6);
-  background-color: #0e0b0a;
+  background-color: var(--color-stone-deep);
 }
 
 .stone-panel-moss {
-  border: 3px solid #2a4a1a;
+  border: 3px solid var(--color-moss-border);
   box-shadow:
-    inset 1px 1px 0 #3a6a2a,
-    inset -1px -1px 0 #0a1a08,
+    inset 1px 1px 0 var(--color-moss-mid),
+    inset -1px -1px 0 var(--color-moss-void),
     0 4px 24px rgba(0, 0, 0, 0.6);
-  background-color: #0e0b0a;
+  background-color: var(--color-stone-deep);
+}
+
+/* Character sheet stat rows */
+.stat-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-stone-mid);
+}
+
+.stat-row:last-child {
+  border-bottom: none;
+}
+
+.dot-leader {
+  flex: 1;
+  border-bottom: 2px dotted var(--color-stone-groove);
+  margin-bottom: 3px;
+  min-width: 0.5rem;
+}
+
+.dim {
+  color: var(--color-stone-border);
+}
+
+.gold {
+  color: var(--color-amber);
+  text-shadow: 0 0 8px rgba(212, 168, 83, 0.5);
+}
+
+.blood {
+  color: var(--color-blood);
 }
 
 /* Torch glow text */
 .glow-amber {
-  color: #d4a853;
+  color: var(--color-amber);
   text-shadow:
     0 0 8px rgba(212, 168, 83, 0.7),
     0 0 20px rgba(212, 168, 83, 0.3);
 }
 
 .glow-blood {
-  color: #c0392b;
+  color: var(--color-blood-bright);
   text-shadow:
     0 0 8px rgba(192, 57, 43, 0.7),
     0 0 20px rgba(192, 57, 43, 0.3);
 }
 
 .glow-moss {
-  color: #5daa3a;
+  color: var(--color-moss-bright);
   text-shadow:
     0 0 8px rgba(93, 170, 58, 0.7),
     0 0 20px rgba(93, 170, 58, 0.3);
@@ -173,13 +224,13 @@ body::after {
   0%,
   100% {
     box-shadow:
-      inset 1px 1px 0 #8b6914,
-      inset -1px -1px 0 #2a1f0e;
+      inset 1px 1px 0 var(--color-amber-dim),
+      inset -1px -1px 0 var(--color-stone-groove);
   }
   50% {
     box-shadow:
-      inset 1px 1px 0 #d4a853,
-      inset -1px -1px 0 #2a1f0e,
+      inset 1px 1px 0 var(--color-amber),
+      inset -1px -1px 0 var(--color-stone-groove),
       0 0 12px rgba(212, 168, 83, 0.4);
   }
 }

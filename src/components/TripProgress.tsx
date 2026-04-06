@@ -14,8 +14,8 @@ export function TripProgress({ startDate, totalDays = 365 }: Props) {
   const fillWidth = `${fillPct}%`;
 
   return (
-    <div className="stone-panel mx-auto mb-12 max-w-2xl px-6 py-6">
-      <div className="mb-3 flex items-center justify-between text-[9px] text-[#5c4a2a]">
+    <div>
+      <div className="text-stone-border mb-3 flex items-center justify-between text-sm">
         <span>⏳ DAYS SURVIVED</span>
         <span className="glow-amber">
           {currentDay} / {totalDays}
@@ -23,29 +23,26 @@ export function TripProgress({ startDate, totalDays = 365 }: Props) {
       </div>
 
       {/* Bar track */}
-      <div
-        className="relative mb-3 h-5 w-full bg-[#080608]"
-        style={{ border: '2px solid #2a1f0e' }}
-      >
+      <div className="border-stone-groove bg-stone-void relative mb-3 h-5 w-full border-2">
         {/* Fill */}
         <div
-          className="ember-pulse absolute inset-y-0 left-0 bg-[#8b6914] transition-all duration-1000"
+          className="ember-pulse bg-amber-dim absolute inset-y-0 left-0 transition-all duration-1000"
           style={{ width: fillWidth, minWidth: currentDay > 1 ? '4px' : '0' }}
         />
         {/* Quarter marks */}
         {[25, 50, 75].map((tick) => (
           <div
             key={tick}
-            className="absolute inset-y-0 w-px bg-[#2a1f0e]"
+            className="bg-stone-groove absolute inset-y-0 w-px"
             style={{ left: `${tick}%` }}
           />
         ))}
       </div>
 
-      <div className="flex items-center justify-between text-[9px]">
-        <span className="text-[#3a2a14]">DAY 1</span>
-        <span className="text-[#5c4a2a]">{fillPct.toFixed(1)}% OF QUEST COMPLETE</span>
-        <span className="text-[#3a2a14]">DAY {totalDays}</span>
+      <div className="flex items-center justify-between text-sm">
+        <span className="text-stone-muted">DAY 1</span>
+        <span className="text-stone-border">{fillPct.toFixed(1)}% COMPLETE</span>
+        <span className="text-stone-muted">DAY {totalDays}</span>
       </div>
     </div>
   );

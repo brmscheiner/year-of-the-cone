@@ -1,26 +1,24 @@
 - id: index
   items:
-    - label: 'Hotel Check-ins'
-      value: 48
-      icon: '🏨'
-    - label: 'Countries Visited'
-      value: 12
-      icon: '🌍'
-    - label: 'Flights Taken'
-      value: 19
-      icon: '✈️'
-    - label: 'Cities Explored'
-      value: 31
-      icon: '🏙️'
-    - label: 'Coffees Consumed'
-      value: 312
-      icon: '☕'
-    - label: 'Sunsets Witnessed'
-      value: 87
-      icon: '🌅'
-    - label: 'Local Dishes Tried'
-      value: 156
-      icon: '🍜'
-    - label: 'Photos Taken'
-      value: 4821
-      icon: '📸'
+    - label: 'Miles Driven'
+      value: 847
+    - label: 'States Visited'
+      value: 4
+    - label: 'Miles Hiked'
+      value: 23
+    - label: 'Feet Ascended'
+      value: 14200
+    - label: 'Trees Identified'
+      value: 47
+    - label: 'Truck Nights'
+      value: 8
+    - label: 'Bed Nights'
+      value: 3
+    - label: 'Holes Pooped In'
+      value: 11
+    - label: 'Parks Visited'
+      value: 6
+    - label: 'Dollars Spent'
+      value: 1243
+    - label: 'Books Read'
+      value: 2

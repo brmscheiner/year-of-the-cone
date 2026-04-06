@@ -8,7 +8,7 @@ export function HeroSection({ title, tagline, travelerName }: Props) {
   return (
     <header className="relative flex flex-col items-center justify-center px-4 py-16 text-center">
       {/* Status bar */}
-      <div className="mb-8 flex items-center gap-4 text-[9px] text-[#7a6a52]">
+      <div className="text-parchment-dim mb-8 flex items-center gap-4 text-sm">
         <span className="glow-amber">⚔ ADVENTURER</span>
         <span>·</span>
         <span>{travelerName.toUpperCase()}</span>
@@ -25,15 +25,15 @@ export function HeroSection({ title, tagline, travelerName }: Props) {
       </h1>
 
       {/* Divider */}
-      <div className="mb-6 flex items-center gap-3 text-[#5c4a2a]">
+      <div className="text-stone-border mb-6 flex items-center gap-3">
         <span>{'─'.repeat(6)}</span>
-        <span className="text-[11px] text-[#8b6914]">✦</span>
+        <span className="text-amber-dim text-sm">✦</span>
         <span>{'─'.repeat(6)}</span>
       </div>
 
       {/* Tagline */}
       <p
-        className="text-[11px] leading-loose tracking-widest text-[#7a6a52]"
+        className="text-parchment-dim text-sm leading-loose tracking-widest"
         style={{ fontFamily: '"Press Start 2P", monospace' }}
       >
         {tagline}

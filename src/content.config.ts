@@ -28,7 +28,7 @@ const counters = defineCollection({
       z.object({
         label: z.string(),
         value: z.number(),
-        icon: z.string(),
+        icon: z.string().optional(),
       }),
     ),
   }),

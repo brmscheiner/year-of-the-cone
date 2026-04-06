@@ -1,8 +1,8 @@
 - id: config
-  travelerName: Casey
+  travelerName: Casey Clapp
   title: 'YEAR OF THE CONE'
   tagline: "I'm finding every conifer in the country."
-  startDate: '2026-04-05'
+  startDate: '2026-04-06'
   currentLocation: 'Portland'
   currentCountry: 'Oregon'
   socialLinks:

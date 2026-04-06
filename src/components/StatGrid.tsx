@@ -3,7 +3,7 @@ import { StatCounter } from './StatCounter';
 interface CounterItem {
   label: string;
   value: number;
-  icon: string;
+  icon?: string;
 }
 
 interface Props {
@@ -12,13 +12,15 @@ interface Props {
 
 export function StatGrid({ items }: Props) {
   return (
-    <section className="mx-auto max-w-4xl px-4">
-      <div className="mb-6 text-center text-[9px] tracking-widest text-[#5c4a2a]">
+    <section>
+      <div className="border-stone-groove text-stone-border border-b py-3 text-center text-sm tracking-widest">
         ─── ADVENTURER&apos;S CODEX ───
       </div>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="border-stone-groove grid grid-cols-2 border-t border-l sm:grid-cols-3 lg:grid-cols-4">
         {items.map((item, i) => (
-          <StatCounter key={item.label} {...item} index={i} />
+          <div key={item.label} className="border-stone-groove border-r border-b">
+            <StatCounter {...item} index={i} />
+          </div>
         ))}
       </div>
     </section>
