@@ -11,20 +11,16 @@ interface Props {
   links: SocialLinks;
 }
 
-const SOCIAL = [
-  { key: 'instagram' as const, label: 'INSTAGRAM', icon: '📸' },
-  { key: 'tiktok' as const, label: 'TIKTOK', icon: '🎬' },
-  { key: 'youtube' as const, label: 'YOUTUBE', icon: '▶' },
-  { key: 'patreon' as const, label: 'PATREON', icon: '🛡' },
-  { key: 'substack' as const, label: 'SUBSTACK', icon: '📜' },
-  { key: 'gofundme' as const, label: 'GOFUNDME', icon: '⚗' },
+const SOCIAL: { key: keyof SocialLinks; label: string; icon: string; fallback: string }[] = [
+  { key: 'instagram', label: 'INSTAGRAM', icon: '📸', fallback: '#' },
+  { key: 'tiktok', label: 'TIKTOK', icon: '🎬', fallback: '#' },
+  { key: 'youtube', label: 'YOUTUBE', icon: '▶', fallback: '#' },
+  { key: 'patreon', label: 'PATREON', icon: '🛡', fallback: '#' },
+  { key: 'substack', label: 'SUBSTACK', icon: '📜', fallback: '#' },
+  { key: 'gofundme', label: 'GOFUNDME', icon: '⚗', fallback: '#' },
 ];
 
 export function SocialFooter({ links }: Props) {
-  const active = SOCIAL.filter(({ key }) => links[key]);
-
-  if (active.length === 0) return null;
-
   return (
     <footer className="mt-20 px-4 pb-16">
       <div className="mx-auto max-w-4xl">
@@ -32,11 +28,11 @@ export function SocialFooter({ links }: Props) {
           ─── FOLLOW THE QUEST ───
         </div>
         <div className="flex flex-wrap justify-center gap-3">
-          {active.map(({ key, label, icon }) => (
+          {SOCIAL.map(({ key, label, icon, fallback }) => (
             <a
               key={key}
-              href={links[key]}
-              target="_blank"
+              href={links[key] || fallback}
+              target={links[key] ? '_blank' : undefined}
               rel="noopener noreferrer"
               className="stone-panel px-4 py-3 text-[9px] tracking-widest text-[#7a6a52] transition-colors duration-150 hover:text-[#d4a853]"
             >

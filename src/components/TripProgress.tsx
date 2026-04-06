@@ -1,12 +1,12 @@
-'use client';
-
 interface Props {
   startDate: string;
   totalDays?: number;
 }
 
 export function TripProgress({ startDate, totalDays = 365 }: Props) {
-  const start = new Date(startDate);
+  // Parse as local midnight to avoid UTC offset shifting the day count
+  const [y, m, d] = startDate.split('-').map(Number);
+  const start = new Date(y, m - 1, d);
   const now = new Date();
   const elapsed = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
   const currentDay = Math.min(Math.max(elapsed + 1, 1), totalDays);
@@ -30,7 +30,7 @@ export function TripProgress({ startDate, totalDays = 365 }: Props) {
         {/* Fill */}
         <div
           className="ember-pulse absolute inset-y-0 left-0 bg-[#8b6914] transition-all duration-1000"
-          style={{ width: fillWidth, minWidth: fillPct > 0 ? '4px' : '0' }}
+          style={{ width: fillWidth, minWidth: currentDay > 1 ? '4px' : '0' }}
         />
         {/* Quarter marks */}
         {[25, 50, 75].map((tick) => (
