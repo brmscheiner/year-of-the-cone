@@ -1,13 +1,17 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-neon-green: #39ff14;
-  --color-neon-cyan: #00f5ff;
-  --color-neon-magenta: #ff00ff;
-  --color-neon-yellow: #fff01f;
-  --color-void: #050510;
-  --color-void-light: #0d0d24;
-  --color-void-card: #0a0a1e;
+  --color-stone-darkest: #080608;
+  --color-stone-dark: #0e0b0a;
+  --color-stone-mid: #1a1410;
+  --color-stone-border: #5c4a2a;
+  --color-stone-highlight: #8b6914;
+  --color-parchment: #c8b89a;
+  --color-parchment-dim: #7a6a52;
+  --color-amber: #d4a853;
+  --color-amber-dim: #8b6914;
+  --color-blood: #8b2222;
+  --color-moss: #3a5c2a;
   --font-pixel: 'Press Start 2P', monospace;
 }
 
@@ -25,63 +29,96 @@
 }
 
 html {
-  background-color: #050510;
-  color: #e0e0e0;
+  background-color: #080608;
+  color: #c8b89a;
   font-family: 'Press Start 2P', monospace;
 }
 
-/* CRT scanline overlay */
+/* Subtle stone texture overlay */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.08) 2px,
-    rgba(0, 0, 0, 0.08) 4px
-  );
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.04) 3px,
+      rgba(0, 0, 0, 0.04) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(0, 0, 0, 0.04) 3px,
+      rgba(0, 0, 0, 0.04) 4px
+    );
   pointer-events: none;
   z-index: 9999;
 }
 
-/* CRT vignette */
+/* Dungeon vignette — torch-lit from center */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+  background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(4, 2, 4, 0.75) 100%);
   pointer-events: none;
   z-index: 9998;
 }
 
-/* Pixel border utility */
-.pixel-border {
-  border: 3px solid var(--color-neon-green);
+/* Stone panel — main border style */
+.stone-panel {
+  border: 3px solid #5c4a2a;
   box-shadow:
-    0 0 8px var(--color-neon-green),
-    0 0 20px rgba(57, 255, 20, 0.2),
-    inset 0 0 8px rgba(57, 255, 20, 0.05);
+    inset 1px 1px 0 #8b6914,
+    inset -1px -1px 0 #2a1f0e,
+    0 4px 24px rgba(0, 0, 0, 0.6);
+  background-color: #0e0b0a;
 }
 
-.pixel-border-cyan {
-  border: 3px solid var(--color-neon-cyan);
+.stone-panel-blood {
+  border: 3px solid #6b1a1a;
   box-shadow:
-    0 0 8px var(--color-neon-cyan),
-    0 0 20px rgba(0, 245, 255, 0.2),
-    inset 0 0 8px rgba(0, 245, 255, 0.05);
+    inset 1px 1px 0 #8b2222,
+    inset -1px -1px 0 #2a0a0a,
+    0 4px 24px rgba(0, 0, 0, 0.6);
+  background-color: #0e0b0a;
 }
 
-.pixel-border-magenta {
-  border: 3px solid var(--color-neon-magenta);
+.stone-panel-moss {
+  border: 3px solid #2a4a1a;
   box-shadow:
-    0 0 8px var(--color-neon-magenta),
-    0 0 20px rgba(255, 0, 255, 0.2),
-    inset 0 0 8px rgba(255, 0, 255, 0.05);
+    inset 1px 1px 0 #3a6a2a,
+    inset -1px -1px 0 #0a1a08,
+    0 4px 24px rgba(0, 0, 0, 0.6);
+  background-color: #0e0b0a;
 }
 
-/* Blink animation */
+/* Torch glow text */
+.glow-amber {
+  color: #d4a853;
+  text-shadow:
+    0 0 8px rgba(212, 168, 83, 0.7),
+    0 0 20px rgba(212, 168, 83, 0.3);
+}
+
+.glow-blood {
+  color: #c0392b;
+  text-shadow:
+    0 0 8px rgba(192, 57, 43, 0.7),
+    0 0 20px rgba(192, 57, 43, 0.3);
+}
+
+.glow-moss {
+  color: #5daa3a;
+  text-shadow:
+    0 0 8px rgba(93, 170, 58, 0.7),
+    0 0 20px rgba(93, 170, 58, 0.3);
+}
+
+/* Blink */
 @keyframes blink {
   0%,
   100% {
@@ -96,33 +133,30 @@ body::after {
   animation: blink 1s step-end infinite;
 }
 
-/* Neon text glow */
-.glow-green {
-  color: var(--color-neon-green);
-  text-shadow:
-    0 0 8px var(--color-neon-green),
-    0 0 20px rgba(57, 255, 20, 0.5);
+/* Torch flicker on the amber glow */
+@keyframes flicker {
+  0%,
+  100% {
+    text-shadow:
+      0 0 8px rgba(212, 168, 83, 0.7),
+      0 0 20px rgba(212, 168, 83, 0.3);
+  }
+  50% {
+    text-shadow:
+      0 0 12px rgba(212, 168, 83, 0.9),
+      0 0 30px rgba(212, 168, 83, 0.5);
+  }
 }
 
-.glow-cyan {
-  color: var(--color-neon-cyan);
-  text-shadow:
-    0 0 8px var(--color-neon-cyan),
-    0 0 20px rgba(0, 245, 255, 0.5);
+.flicker {
+  animation: flicker 3s ease-in-out infinite;
 }
 
-.glow-magenta {
-  color: var(--color-neon-magenta);
-  text-shadow:
-    0 0 8px var(--color-neon-magenta),
-    0 0 20px rgba(255, 0, 255, 0.5);
-}
-
-/* Counter value animation */
+/* Counter card entrance */
 @keyframes count-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -135,18 +169,21 @@ body::after {
 }
 
 /* Progress bar pulse */
-@keyframes progress-pulse {
+@keyframes ember-pulse {
   0%,
   100% {
-    box-shadow: 0 0 8px var(--color-neon-cyan);
+    box-shadow:
+      inset 1px 1px 0 #8b6914,
+      inset -1px -1px 0 #2a1f0e;
   }
   50% {
     box-shadow:
-      0 0 16px var(--color-neon-cyan),
-      0 0 32px rgba(0, 245, 255, 0.4);
+      inset 1px 1px 0 #d4a853,
+      inset -1px -1px 0 #2a1f0e,
+      0 0 12px rgba(212, 168, 83, 0.4);
   }
 }
 
-.progress-glow {
-  animation: progress-pulse 2s ease-in-out infinite;
+.ember-pulse {
+  animation: ember-pulse 2.5s ease-in-out infinite;
 }

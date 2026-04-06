@@ -1,9 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { file } from 'astro/loaders';
 
-// Single-entry collections: the YAML files are arrays with one object each.
-// Astro 6's file loader requires an array of objects with unique `id` fields.
-
 const general = defineCollection({
   loader: file('src/content/general/index.yaml'),
   schema: z.object({
@@ -13,6 +10,14 @@ const general = defineCollection({
     startDate: z.string(),
     currentLocation: z.string(),
     currentCountry: z.string(),
+    socialLinks: z.object({
+      instagram: z.string(),
+      tiktok: z.string(),
+      youtube: z.string(),
+      patreon: z.string(),
+      substack: z.string(),
+      gofundme: z.string(),
+    }),
   }),
 });
 

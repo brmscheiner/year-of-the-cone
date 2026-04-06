@@ -5,17 +5,16 @@ interface Props {
   index?: number;
 }
 
-// Cycle through neon border colors for visual variety
-const BORDER_CLASSES = ['pixel-border', 'pixel-border-cyan', 'pixel-border-magenta'];
-const VALUE_CLASSES = ['glow-green', 'glow-cyan', 'glow-magenta'];
+const PANEL_CLASSES = ['stone-panel', 'stone-panel-blood', 'stone-panel-moss'];
+const VALUE_CLASSES = ['glow-amber', 'glow-blood', 'glow-moss'];
 
 export function StatCounter({ label, value, icon, index = 0 }: Props) {
-  const borderClass = BORDER_CLASSES[index % BORDER_CLASSES.length];
+  const panelClass = PANEL_CLASSES[index % PANEL_CLASSES.length];
   const valueClass = VALUE_CLASSES[index % VALUE_CLASSES.length];
 
   return (
     <div
-      className={`${borderClass} count-in flex flex-col items-center gap-3 bg-[#0a0a1e] px-4 py-6`}
+      className={`${panelClass} count-in flex flex-col items-center gap-3 px-4 py-6`}
       style={{ animationDelay: `${index * 60}ms` }}
     >
       <span className="text-3xl leading-none" role="img" aria-label={label}>
@@ -24,7 +23,7 @@ export function StatCounter({ label, value, icon, index = 0 }: Props) {
       <span className={`${valueClass} text-2xl leading-none tracking-wider`}>
         {value.toLocaleString()}
       </span>
-      <span className="text-center text-[8px] leading-relaxed tracking-widest text-gray-400">
+      <span className="text-center text-[8px] leading-relaxed tracking-widest text-[#7a6a52]">
         {label.toUpperCase()}
       </span>
     </div>

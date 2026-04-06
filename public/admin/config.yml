@@ -42,6 +42,40 @@ collections:
             name: "currentCountry"
             widget: "string"
             hint: "The country you're in right now"
+          - label: "Social Links"
+            name: "socialLinks"
+            widget: "object"
+            fields:
+              - label: "Instagram URL"
+                name: "instagram"
+                widget: "string"
+                required: false
+                hint: "Leave blank to hide"
+              - label: "TikTok URL"
+                name: "tiktok"
+                widget: "string"
+                required: false
+                hint: "Leave blank to hide"
+              - label: "YouTube URL"
+                name: "youtube"
+                widget: "string"
+                required: false
+                hint: "Leave blank to hide"
+              - label: "Patreon URL"
+                name: "patreon"
+                widget: "string"
+                required: false
+                hint: "Leave blank to hide"
+              - label: "Substack URL"
+                name: "substack"
+                widget: "string"
+                required: false
+                hint: "Leave blank to hide"
+              - label: "GoFundMe URL"
+                name: "gofundme"
+                widget: "string"
+                required: false
+                hint: "Leave blank to hide"
 
   - name: "counters"
     label: "🎮 Counters"

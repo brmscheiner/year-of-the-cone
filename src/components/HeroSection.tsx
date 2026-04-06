@@ -7,33 +7,33 @@ interface Props {
 export function HeroSection({ title, tagline, travelerName }: Props) {
   return (
     <header className="relative flex flex-col items-center justify-center px-4 py-16 text-center">
-      {/* Top bar */}
-      <div className="mb-8 flex items-center gap-4 text-[10px] text-gray-500">
-        <span className="glow-green">■ PLAYER 1</span>
+      {/* Status bar */}
+      <div className="mb-8 flex items-center gap-4 text-[9px] text-[#7a6a52]">
+        <span className="glow-amber">⚔ ADVENTURER</span>
         <span>·</span>
         <span>{travelerName.toUpperCase()}</span>
         <span>·</span>
-        <span className="blink glow-cyan">● LIVE</span>
+        <span className="blink glow-blood">● QUEST ACTIVE</span>
       </div>
 
-      {/* Main title */}
+      {/* Title */}
       <h1
-        className="glow-green mb-6 text-xl leading-relaxed tracking-widest sm:text-2xl md:text-3xl"
+        className="glow-amber flicker mb-8 text-xl leading-relaxed tracking-widest sm:text-2xl md:text-3xl"
         style={{ fontFamily: '"Press Start 2P", monospace' }}
       >
         {title}
       </h1>
 
-      {/* Decorative divider */}
-      <div className="mb-6 flex items-center gap-2 text-[10px] text-gray-600">
-        {'▶'.repeat(3)}
-        <span className="glow-magenta px-4 text-[11px]">INSERT COIN TO CONTINUE</span>
-        {'◀'.repeat(3)}
+      {/* Divider */}
+      <div className="mb-6 flex items-center gap-3 text-[#5c4a2a]">
+        <span>{'─'.repeat(6)}</span>
+        <span className="text-[11px] text-[#8b6914]">✦</span>
+        <span>{'─'.repeat(6)}</span>
       </div>
 
       {/* Tagline */}
       <p
-        className="text-[11px] leading-loose tracking-widest text-gray-400"
+        className="text-[11px] leading-loose tracking-widest text-[#7a6a52]"
         style={{ fontFamily: '"Press Start 2P", monospace' }}
       >
         {tagline}

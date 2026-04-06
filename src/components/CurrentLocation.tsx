@@ -5,13 +5,13 @@ interface Props {
 
 export function CurrentLocation({ location, country }: Props) {
   return (
-    <div className="pixel-border-cyan mx-auto mb-10 max-w-xl bg-[#0a0a1e] px-6 py-4 text-center">
-      <div className="mb-2 text-[9px] tracking-widest text-gray-500">CURRENT LOCATION</div>
+    <div className="stone-panel mx-auto mb-10 max-w-xl px-6 py-4 text-center">
+      <div className="mb-2 text-[9px] tracking-widest text-[#5c4a2a]">◈ CURRENT LOCATION ◈</div>
       <div className="flex items-center justify-center gap-3">
-        <span className="glow-cyan text-[13px] tracking-wider">
+        <span className="glow-amber text-[13px] tracking-wider">
           {location.toUpperCase()}, {country.toUpperCase()}
         </span>
-        <span className="blink glow-cyan text-[13px]">_</span>
+        <span className="blink text-[13px] text-[#8b6914]">_</span>
       </div>
     </div>
   );

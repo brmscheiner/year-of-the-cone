@@ -2,6 +2,13 @@
   travelerName: Casey
   title: "CASEY'S GREAT ADVENTURE"
   tagline: 'ONE YEAR. NO FIXED ADDRESS.'
-  startDate: '2025-06-01'
-  currentLocation: 'Lisbon'
-  currentCountry: 'Portugal'
+  startDate: '2026-04-05'
+  currentLocation: 'Portland'
+  currentCountry: 'Oregon'
+  socialLinks:
+    instagram: ''
+    tiktok: ''
+    youtube: ''
+    patreon: ''
+    substack: ''
+    gofundme: ''
