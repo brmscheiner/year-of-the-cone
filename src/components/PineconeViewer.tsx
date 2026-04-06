@@ -91,15 +91,15 @@ const SPIRAL_FREQ = 1.8; // how tightly the spiral winds up the cone
 const SPIRAL_BANDS = 7; // how many scale rows visible around the cone
 
 function voxelColor(v: Voxel): THREE.Color {
-  if (v.isStem) return new THREE.Color(0x0d0604);
-  if (v.y <= -3.5) return new THREE.Color(0x1a0a04);
+  if (v.isStem) return new THREE.Color(0x0a0603);
+  if (v.y <= -3.5) return new THREE.Color(0x150b03);
 
   // 0 = bottom of cone, 1 = tip
   const t = (v.y + 4) / 9.0;
 
   if (!v.isOuter) {
-    // Inner core: very dark, slight warmth
-    return new THREE.Color().setHSL(0.055, 0.75, 0.05 + t * 0.03);
+    // Inner core: very dark brown, almost black
+    return new THREE.Color().setHSL(0.057, 0.82, 0.04 + t * 0.02);
   }
 
   // Spiral phase: angle around Y axis offset by height → helical stripes
@@ -108,11 +108,11 @@ function voxelColor(v: Voxel): THREE.Color {
   const isScaleTip = phase < 0.55;
 
   if (isScaleTip) {
-    // Lit face of the scale: warmer, medium brown
-    return new THREE.Color().setHSL(0.07, 0.8, 0.18 + t * 0.11);
+    // Scale face (lit): tan — yellow-brown, lower saturation, higher lightness
+    return new THREE.Color().setHSL(0.095, 0.45, 0.3 + t * 0.18);
   } else {
-    // Shadow under the overlapping scale above: darker
-    return new THREE.Color().setHSL(0.055, 0.75, 0.09 + t * 0.06);
+    // Shadow under overlapping scale: dark brown, high contrast against tan
+    return new THREE.Color().setHSL(0.057, 0.85, 0.06 + t * 0.04);
   }
 }
 

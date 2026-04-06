@@ -1,7 +1,7 @@
 - id: config
   travelerName: Casey
   title: 'YEAR OF THE CONE'
-  tagline: 'ONE YEAR. NO FIXED ADDRESS.'
+  tagline: "I'm finding every conifer in the country."
   startDate: '2026-04-05'
   currentLocation: 'Portland'
   currentCountry: 'Oregon'
