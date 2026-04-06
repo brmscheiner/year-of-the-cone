@@ -2,74 +2,37 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 // ---------------------------------------------------------------------------
-// Voxel grid definition
+// Geometry: fine 0.5-unit grid gives 4× the cross-section resolution
 // ---------------------------------------------------------------------------
 
-type XZ = [number, number];
+const STEP = 0.5;
+const VOXEL = 0.46; // slightly smaller than step → small gap between cubes
 
-const WIDE: XZ[] = [
-  [-2, -1],
-  [-2, 0],
-  [-2, 1],
-  [-1, -2],
-  [-1, -1],
-  [-1, 0],
-  [-1, 1],
-  [-1, 2],
-  [0, -2],
-  [0, -1],
-  [0, 0],
-  [0, 1],
-  [0, 2],
-  [1, -2],
-  [1, -1],
-  [1, 0],
-  [1, 1],
-  [1, 2],
-  [2, -1],
-  [2, 0],
-  [2, 1],
-];
-
-const MED: XZ[] = [
-  [-1, -1],
-  [-1, 0],
-  [-1, 1],
-  [0, -1],
-  [0, 0],
-  [0, 1],
-  [1, -1],
-  [1, 0],
-  [1, 1],
-];
-
-const CROSS: XZ[] = [
-  [0, 0],
-  [1, 0],
-  [-1, 0],
-  [0, 1],
-  [0, -1],
-];
-
-const RAW_LAYERS: { y: number; cells: XZ[] }[] = [
-  { y: -7, cells: [[0, 0]] },
-  { y: -6, cells: [[0, 0]] },
-  { y: -5, cells: CROSS },
-  { y: -4, cells: MED },
-  { y: -3, cells: WIDE },
-  { y: -2, cells: WIDE },
-  { y: -1, cells: WIDE },
-  { y: 0, cells: WIDE },
-  { y: 1, cells: MED },
-  { y: 2, cells: MED },
-  { y: 3, cells: CROSS },
-  { y: 4, cells: CROSS },
-  { y: 5, cells: [[0, 0]] },
-  { y: 6, cells: [[0, 0]] },
+// Profile: [world_y, max_radius] — defines the pinecone silhouette
+const PROFILE: [number, number][] = [
+  [-5.0, 0.0], // stem base
+  [-4.5, 0.0], // stem
+  [-4.0, 0.0], // stem
+  [-3.5, 0.5], // skirt starts
+  [-3.0, 1.1],
+  [-2.5, 1.7],
+  [-2.0, 2.2],
+  [-1.5, 2.5], // widest
+  [-1.0, 2.5], // widest
+  [-0.5, 2.4],
+  [0.0, 2.2],
+  [0.5, 2.0],
+  [1.0, 1.7],
+  [1.5, 1.4],
+  [2.0, 1.1],
+  [2.5, 0.8],
+  [3.0, 0.5],
+  [3.5, 0.25],
+  [4.0, 0.0], // tip
 ];
 
 // ---------------------------------------------------------------------------
-// Build voxel list and classify inner vs outer
+// Build voxel list
 // ---------------------------------------------------------------------------
 
 interface Voxel {
@@ -78,60 +41,78 @@ interface Voxel {
   z: number;
   isStem: boolean;
   isOuter: boolean;
-  // alternating parity — drives which outer scales protrude vs. recess
-  parity: number;
 }
 
 function buildVoxels(): Voxel[] {
-  const posSet = new Set<string>();
-  const raw: [number, number, number][] = [];
+  const raw: [number, number, number, boolean][] = []; // x,y,z,isStem
 
-  for (const { y, cells } of RAW_LAYERS) {
-    for (const [x, z] of cells) {
-      posSet.add(`${x},${y},${z}`);
-      raw.push([x, y, z]);
+  for (const [y, maxR] of PROFILE) {
+    if (maxR === 0) {
+      if (y >= -5) raw.push([0, y, 0, true]); // stem voxel
+      continue;
+    }
+    const extent = Math.ceil(maxR / STEP);
+    for (let xi = -extent; xi <= extent; xi++) {
+      for (let zi = -extent; zi <= extent; zi++) {
+        const x = xi * STEP;
+        const z = zi * STEP;
+        if (x * x + z * z <= maxR * maxR) {
+          raw.push([x, y, z, false]);
+        }
+      }
     }
   }
 
-  return raw.map(([x, y, z]) => {
-    const isStem = y <= -6;
+  // Build a position set to identify outer voxels
+  const posSet = new Set(raw.map(([x, y, z]) => `${x},${y},${z}`));
+
+  return raw.map(([x, y, z, isStem]) => {
     const isOuter =
       !isStem &&
       [
-        [x + 1, z],
-        [x - 1, z],
-        [x, z + 1],
-        [x, z - 1],
+        [x + STEP, z],
+        [x - STEP, z],
+        [x, z + STEP],
+        [x, z - STEP],
       ].some(([nx, nz]) => !posSet.has(`${nx},${y},${nz}`));
-    const parity = (Math.abs(x) + Math.abs(z) + y) % 2;
-    return { x, y, z, isStem, isOuter, parity };
+    return { x, y, z, isStem, isOuter };
   });
 }
 
 const VOXELS = buildVoxels();
 
 // ---------------------------------------------------------------------------
-// Color — warm torch palette with depth gradient
+// Color — height gradient + spiral stripe to fake the scale pattern
 // ---------------------------------------------------------------------------
 
+// Spiral stripe: colors voxels based on angular position offset by height,
+// creating a helical band that looks like overlapping pinecone scales.
+const SPIRAL_FREQ = 1.8; // how tightly the spiral winds up the cone
+const SPIRAL_BANDS = 7; // how many scale rows visible around the cone
+
 function voxelColor(v: Voxel): THREE.Color {
-  if (v.isStem) return new THREE.Color(0x0e0604);
-  if (v.y <= -5) return new THREE.Color(0x1a0a04);
+  if (v.isStem) return new THREE.Color(0x0d0604);
+  if (v.y <= -3.5) return new THREE.Color(0x1a0a04);
 
   // 0 = bottom of cone, 1 = tip
-  const t = (v.y + 5) / 13;
+  const t = (v.y + 4) / 9.0;
 
   if (!v.isOuter) {
-    // Inner core: very dark
-    return new THREE.Color().setHSL(0.055, 0.8, 0.06 + t * 0.04);
+    // Inner core: very dark, slight warmth
+    return new THREE.Color().setHSL(0.055, 0.75, 0.05 + t * 0.03);
   }
 
-  if (v.parity === 0) {
-    // Recessed scale face: darker
-    return new THREE.Color().setHSL(0.055, 0.75, 0.12 + t * 0.08);
+  // Spiral phase: angle around Y axis offset by height → helical stripes
+  const angle = Math.atan2(v.z, v.x); // -π to π
+  const phase = ((angle + v.y * SPIRAL_FREQ) * (SPIRAL_BANDS / (2 * Math.PI)) + 100) % 1;
+  const isScaleTip = phase < 0.55;
+
+  if (isScaleTip) {
+    // Lit face of the scale: warmer, medium brown
+    return new THREE.Color().setHSL(0.07, 0.8, 0.18 + t * 0.11);
   } else {
-    // Protruding scale tip: warmer, lighter
-    return new THREE.Color().setHSL(0.07, 0.8, 0.22 + t * 0.12);
+    // Shadow under the overlapping scale above: darker
+    return new THREE.Color().setHSL(0.055, 0.75, 0.09 + t * 0.06);
   }
 }
 
@@ -146,18 +127,16 @@ export function PineconeViewer() {
     const el = mountRef.current;
     if (!el) return;
 
-    const W = 280;
-    const H = 380;
+    const W = 300;
+    const H = 400;
 
-    // Scene
     const scene = new THREE.Scene();
 
-    // Camera — slight 3/4 view from above
-    const camera = new THREE.PerspectiveCamera(36, W / H, 0.1, 100);
-    camera.position.set(3, 5, 17);
-    camera.lookAt(0, 0, 0);
+    // Camera — 3/4 view, slightly elevated so you see the profile clearly
+    const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100);
+    camera.position.set(5, 2, 18);
+    camera.lookAt(0, -0.5, 0);
 
-    // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
     renderer.setSize(W, H);
     renderer.setPixelRatio(1);
@@ -165,22 +144,20 @@ export function PineconeViewer() {
     el.appendChild(renderer.domElement);
 
     // Lighting
-    // Sky/ground hemisphere — warm amber from above, near-black from below
-    scene.add(new THREE.HemisphereLight(0x4a1c06, 0x080204, 1.8));
+    scene.add(new THREE.HemisphereLight(0x4a2008, 0x060204, 1.5));
 
-    // Main torch from upper-left front
-    const torch = new THREE.DirectionalLight(0xffaa44, 3.0);
-    torch.position.set(4, 7, 6);
+    const torch = new THREE.DirectionalLight(0xffaa40, 3.2);
+    torch.position.set(5, 7, 6);
     scene.add(torch);
 
-    // Cool rim from behind to separate silhouette from background
-    const rim = new THREE.DirectionalLight(0x3050a0, 0.5);
-    rim.position.set(-4, 1, -7);
+    // Cool rim from behind — separates silhouette from dark background
+    const rim = new THREE.DirectionalLight(0x2040a0, 0.6);
+    rim.position.set(-5, 0, -8);
     scene.add(rim);
 
-    // Build geometry — one box per voxel via InstancedMesh
-    const geo = new THREE.BoxGeometry(0.9, 0.9, 0.9);
-    const mat = new THREE.MeshStandardMaterial({ roughness: 0.88, metalness: 0.0 });
+    // InstancedMesh
+    const geo = new THREE.BoxGeometry(VOXEL, VOXEL, VOXEL);
+    const mat = new THREE.MeshStandardMaterial({ roughness: 0.87, metalness: 0 });
     const mesh = new THREE.InstancedMesh(geo, mat, VOXELS.length);
 
     const dummy = new THREE.Object3D();
@@ -190,27 +167,18 @@ export function PineconeViewer() {
       let py = v.y;
       let pz = v.z;
 
-      if (v.isOuter && !v.isStem) {
+      if (v.isOuter) {
         const r = Math.sqrt(v.x * v.x + v.z * v.z);
         if (r > 0) {
-          if (v.parity === 1) {
-            // Protruding scale — push outward + slightly up
-            const push = 0.42;
-            px = v.x + (v.x / r) * push;
-            pz = v.z + (v.z / r) * push;
-            py = v.y + 0.18;
-          } else {
-            // Recessed scale — very slightly inward
-            const pull = 0.08;
-            px = v.x - (v.x / r) * pull;
-            pz = v.z - (v.z / r) * pull;
-          }
+          // Push outer voxels outward to create scale relief
+          const push = 0.18;
+          px = v.x + (v.x / r) * push;
+          pz = v.z + (v.z / r) * push;
+          py = v.y + 0.06; // slight upward lean, like scales opening
         }
       }
 
       dummy.position.set(px, py, pz);
-      dummy.rotation.set(0, 0, 0);
-      dummy.scale.set(1, 1, 1);
       dummy.updateMatrix();
       mesh.setMatrixAt(i, dummy.matrix);
       mesh.setColorAt(i, voxelColor(v));
@@ -219,10 +187,12 @@ export function PineconeViewer() {
     mesh.instanceMatrix.needsUpdate = true;
     if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
 
-    // Group for rotation/bob — center at y midpoint (~0)
     const group = new THREE.Group();
     group.add(mesh);
-    group.position.y = -0.2;
+    // Vertical center: profile spans y=-5 to y=4, midpoint ≈ -0.5
+    group.position.y = 0.5;
+    // Very slight static tilt so you see the 3D profile even when facing front
+    group.rotation.z = 0.12;
     scene.add(group);
 
     let animId: number;
@@ -231,8 +201,8 @@ export function PineconeViewer() {
     const animate = () => {
       animId = requestAnimationFrame(animate);
       const t = (Date.now() - start) * 0.001;
-      group.rotation.y = t * 0.18; // slow, contemplative rotation
-      group.position.y = -0.2 + Math.sin(t * 0.5) * 0.12; // gentle float
+      group.rotation.y = t * 0.15; // slow and contemplative
+      group.position.y = 0.5 + Math.sin(t * 0.45) * 0.1;
       renderer.render(scene, camera);
     };
     animate();
@@ -250,7 +220,7 @@ export function PineconeViewer() {
     <div
       ref={mountRef}
       className="mx-auto flex items-center justify-center"
-      style={{ width: 280, height: 380 }}
+      style={{ width: 300, height: 400 }}
     />
   );
 }
