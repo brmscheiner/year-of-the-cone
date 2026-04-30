@@ -7,6 +7,7 @@ const general = defineCollection({
     travelerName: z.string(),
     title: z.string(),
     tagline: z.string(),
+    coneCount: z.number().optional(),
     startDate: z.string(),
     currentLocation: z.string(),
     currentCountry: z.string(),

@@ -10,8 +10,16 @@ import { PineconeViewer } from '../components/PineconeViewer';
 const general = await getEntry('general', 'config');
 const counters = await getEntry('counters', 'index');
 
-const { travelerName, title, tagline, startDate, currentLocation, currentCountry, socialLinks } =
-  general.data;
+const {
+  travelerName,
+  title,
+  tagline,
+  startDate,
+  currentLocation,
+  currentCountry,
+  socialLinks,
+  coneCount = 0,
+} = general.data;
 const { items } = counters.data;
 ---
 
@@ -42,7 +50,14 @@ const { items } = counters.data;
           class="text-parchment-dim mt-4 text-sm leading-loose tracking-widest"
           style="font-family: 'Press Start 2P', monospace"
         >
-          {tagline}
+          <a
+            href="https://www.caseyclapp.com/yearofthecone"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-parchment transition-colors hover:underline hover:underline-offset-4"
+          >
+            {tagline}
+          </a>
         </p>
       </div>
 
@@ -67,7 +82,7 @@ const { items } = counters.data;
             />
           </div>
           <div class="border-stone-groove border-t px-8 py-6">
-            <TripProgress startDate={startDate} client:only="react" />
+            <TripProgress startDate={startDate} coneCount={coneCount} client:only="react" />
           </div>
         </div>
       </div>

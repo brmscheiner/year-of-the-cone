@@ -36,7 +36,14 @@ export function HeroSection({ title, tagline, travelerName }: Props) {
         className="text-parchment-dim text-sm leading-loose tracking-widest"
         style={{ fontFamily: '"Press Start 2P", monospace' }}
       >
-        {tagline}
+        <a
+          href="https://www.caseyclapp.com/yearofthecone"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-parchment transition-colors"
+        >
+          {tagline}
+        </a>
       </p>
     </header>
   );
