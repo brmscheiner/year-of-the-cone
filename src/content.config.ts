@@ -17,6 +17,7 @@ const general = defineCollection({
       youtube: z.string(),
       patreon: z.string(),
       substack: z.string(),
+      coneClub: z.string(),
       gofundme: z.string(),
     }),
   }),

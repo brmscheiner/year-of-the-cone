@@ -4,6 +4,7 @@ interface SocialLinks {
   youtube: string;
   patreon: string;
   substack: string;
+  coneClub: string;
   gofundme: string;
 }
 
@@ -17,6 +18,7 @@ const SOCIAL: { key: keyof SocialLinks; label: string; icon: string; fallback: s
   { key: 'youtube', label: 'YOUTUBE', icon: '▶', fallback: '#' },
   { key: 'patreon', label: 'PATREON', icon: '🛡', fallback: '#' },
   { key: 'substack', label: 'SUBSTACK', icon: '📜', fallback: '#' },
+  { key: 'coneClub', label: 'CONE CLUB', icon: '🌲', fallback: '#' },
   { key: 'gofundme', label: 'GOFUNDME', icon: '⚗', fallback: '#' },
 ];
 

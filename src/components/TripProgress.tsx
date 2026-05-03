@@ -1,21 +1,20 @@
+const NOW_UTC = Date.now();
+
 interface Props {
-  startDate: string;
   totalDays?: number;
   coneCount?: number;
   totalCones?: number;
 }
 
-export function TripProgress({
-  startDate,
-  totalDays = 365,
-  coneCount = 0,
-  totalCones = 111,
-}: Props) {
-  // Parse as local midnight to avoid UTC offset shifting the day count
-  const [y, m, d] = startDate.split('-').map(Number);
-  const start = new Date(y, m - 1, d);
-  const now = new Date();
-  const elapsed = Math.floor((now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
+export function TripProgress({ totalDays = 365, coneCount = 0, totalCones = 111 }: Props) {
+  // May 1 2026 midnight PST (UTC-8)
+  const start = new Date('2026-05-01T08:00:00Z');
+  // Current time as PST midnight (UTC-8), floored to day
+  const nowUtc = NOW_UTC;
+  const nowPstMidnight = new Date(
+    Math.floor((nowUtc - 8 * 3600 * 1000) / 86400000) * 86400000 + 8 * 3600 * 1000,
+  );
+  const elapsed = Math.floor((nowPstMidnight.getTime() - start.getTime()) / (1000 * 60 * 60 * 24));
   const currentDay = Math.min(Math.max(elapsed + 1, 1), totalDays);
   const fillPct = ((currentDay - 1) / totalDays) * 100;
   const fillWidth = `${fillPct}%`;
