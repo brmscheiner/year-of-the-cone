@@ -9,7 +9,7 @@ interface Props {
 }
 
 const SKILLS = [
-  { label: 'TREE ID', value: 90 },
+  { label: 'TREE IDENTIFICATION', value: 90 },
   { label: 'NAVIGATION', value: 80 },
   { label: 'ENDURANCE', value: 70 },
   { label: 'FORAGING', value: 40 },
@@ -59,11 +59,11 @@ function CharDialog({ travelerName, onClose }: { travelerName: string; onClose: 
         style={{ fontFamily: '"Press Start 2P", monospace' }}
       >
         {/* Header */}
-        <div className="border-stone-groove flex items-center justify-between border-b px-5 py-3">
+        <div className="border-stone-groove flex items-center justify-between border-b px-5 py-1">
           <span className="gold text-sm tracking-widest">{travelerName.toUpperCase()}</span>
           <button
             onClick={onClose}
-            className="dim cursor-pointer text-sm transition-colors hover:text-white"
+            className="dim cursor-pointer p-3 text-base transition-colors hover:text-white"
             aria-label="Close"
           >
             ✕
@@ -74,26 +74,16 @@ function CharDialog({ travelerName, onClose }: { travelerName: string; onClose: 
         <div className="grid grid-cols-1 gap-0 md:grid-cols-[1fr_1fr]">
           {/* Col 1: portrait */}
           <div className="border-stone-groove flex items-center justify-center border-b p-6 md:border-r md:border-b-0">
-            <div
-              className="flex items-center justify-center"
+            <img
+              src="/images/casey.jpg"
+              alt="Casey"
               style={{
-                width: 140,
-                height: 220,
-                background: 'var(--color-stone-mid)',
+                width: 175,
+                height: 275,
+                objectFit: 'cover',
                 border: '2px solid var(--color-stone-groove)',
-                color: 'var(--color-stone-border)',
-                fontSize: '0.45rem',
-                textAlign: 'center',
-                lineHeight: 1.8,
-                letterSpacing: '0.05em',
               }}
-            >
-              <span>
-                PORTRAIT
-                <br />
-                PENDING
-              </span>
-            </div>
+            />
           </div>
 
           {/* Col 2: skills */}
