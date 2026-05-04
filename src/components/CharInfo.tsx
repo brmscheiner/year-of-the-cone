@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react';
+import { SuggestionBox } from './SuggestionBox';
 
 interface Props {
   travelerName: string;
@@ -151,9 +152,11 @@ export function CharInfo({ travelerName, location, country }: Props) {
           <div key={label} className="stat-row">
             <span className="dim shrink-0 text-sm">{label}</span>
             <span className="dot-leader" />
-            <span className={`shrink-0 text-base ${valueClass ?? ''}`}>{value}</span>
+            <span className={`shrink-0 text-sm ${valueClass ?? ''}`}>{value}</span>
           </div>
         ))}
+
+        <SuggestionBox />
       </div>
 
       {open && <CharDialog travelerName={travelerName} onClose={() => setOpen(false)} />}
