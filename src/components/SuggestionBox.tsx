@@ -37,8 +37,7 @@ export function SuggestionBox() {
         href={HREF}
         target="_blank"
         rel="noopener noreferrer"
-        className="suggestion-box-btn group mt-4 flex w-fit cursor-pointer flex-col items-center gap-2 p-3 transition-opacity hover:opacity-75"
-        style={{ textDecoration: 'none', color: 'inherit', borderBottom: 'none' }}
+        className="suggestion-box-btn group mt-4 flex w-fit cursor-pointer flex-col items-center gap-2 border-b-0 p-3 [color:inherit] no-underline transition-opacity hover:opacity-75"
       >
         <svg
           width={SVG_WIDTH}
@@ -85,7 +84,7 @@ export function SuggestionBox() {
             strokeWidth="1"
           />
         </svg>
-        <span className="dim text-xs tracking-widest">SUGGESTION BOX</span>
+        <span className="text-stone-border text-xs tracking-widest">SUGGESTION BOX</span>
       </a>
     </div>
   );

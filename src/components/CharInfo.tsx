@@ -21,11 +21,12 @@ const SKILLS = [
 
 function SkillBar({ score }: { score: number }) {
   const filled = Math.round(score / 10);
-  const color = score >= 80 ? '#2e7d32' : score >= 50 ? '#e07b2a' : '#c0392b';
+  const colorClass =
+    score >= 80 ? 'text-[#2e7d32]' : score >= 50 ? 'text-[#e07b2a]' : 'text-[#c0392b]';
   return (
-    <span style={{ letterSpacing: '0.1em', fontSize: '0.75rem', color }}>
+    <span className={`text-xs tracking-wider ${colorClass}`}>
       {'█'.repeat(filled)}
-      <span className="dim">{'░'.repeat(10 - filled)}</span>
+      <span className="text-stone-border">{'░'.repeat(10 - filled)}</span>
     </span>
   );
 }
@@ -50,21 +51,17 @@ function CharDialog({ travelerName, onClose }: { travelerName: string; onClose: 
   }, [onClose]);
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center"
-      style={{ background: 'rgba(0,0,0,0.7)' }}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
       <div
         ref={ref}
-        className="stone-panel relative mx-4 w-full max-w-2xl overflow-hidden"
-        style={{ fontFamily: '"Press Start 2P", monospace' }}
+        className="stone-panel font-pixel relative mx-4 w-full max-w-2xl overflow-hidden"
       >
         {/* Header */}
         <div className="border-stone-groove flex items-center justify-between border-b px-5 py-1">
           <span className="gold text-sm tracking-widest">{travelerName.toUpperCase()}</span>
           <button
             onClick={onClose}
-            className="dim cursor-pointer p-3 text-base transition-colors hover:text-white"
+            className="text-stone-border cursor-pointer p-3 text-base transition-colors hover:text-white"
             aria-label="Close"
           >
             ✕
@@ -78,30 +75,17 @@ function CharDialog({ travelerName, onClose }: { travelerName: string; onClose: 
             <img
               src="/images/casey.jpg"
               alt="Casey"
-              style={{
-                width: 175,
-                height: 275,
-                objectFit: 'cover',
-                border: '2px solid var(--color-stone-groove)',
-              }}
+              className="border-stone-groove h-[275px] w-[175px] border-2 object-cover"
             />
           </div>
 
           {/* Col 2: skills */}
           <div className="flex flex-col justify-center px-5 py-8">
-            <div className="dim mb-3 tracking-widest" style={{ fontSize: '0.65rem' }}>
-              SKILL SHEET
-            </div>
+            <div className="text-stone-border mb-3 text-[0.65rem] tracking-widest">SKILL SHEET</div>
             {SKILLS.map(({ label, value }) => (
-              <div
-                key={label}
-                className="stat-row"
-                style={{ paddingTop: '0.4rem', paddingBottom: '0.4rem' }}
-              >
-                <span className="dim shrink-0" style={{ fontSize: '0.65rem' }}>
-                  {label}
-                </span>
-                <span className="dot-leader" />
+              <div key={label} className="flex items-baseline gap-2 py-[0.4rem]">
+                <span className="text-stone-border shrink-0 text-[0.65rem]">{label}</span>
+                <span className="border-stone-groove mb-[3px] min-w-2 flex-1 border-b-2 border-dotted" />
                 <SkillBar score={value} />
               </div>
             ))}
@@ -121,14 +105,7 @@ export function CharInfo({ travelerName, location, country }: Props) {
       value: (
         <button
           onClick={() => setOpen(true)}
-          className="gold cursor-pointer underline decoration-dotted underline-offset-4 transition-opacity hover:opacity-75"
-          style={{
-            background: 'none',
-            border: 'none',
-            padding: 0,
-            fontFamily: 'inherit',
-            fontSize: 'inherit',
-          }}
+          className="gold cursor-pointer border-0 bg-transparent p-0 font-[inherit] [font-size:inherit] underline decoration-dotted underline-offset-4 transition-opacity hover:opacity-75"
         >
           {travelerName.toUpperCase()}
         </button>
@@ -139,7 +116,7 @@ export function CharInfo({ travelerName, location, country }: Props) {
       label: 'STATUS',
       value: (
         <span className="flex items-center gap-2">
-          ACTIVE <span className="blink blood">●</span>
+          ACTIVE <span className="blink text-blood">●</span>
         </span>
       ),
     },
@@ -149,9 +126,9 @@ export function CharInfo({ travelerName, location, country }: Props) {
     <>
       <div className="flex flex-col justify-center">
         {rows.map(({ label, value, valueClass }) => (
-          <div key={label} className="stat-row">
-            <span className="dim shrink-0 text-sm">{label}</span>
-            <span className="dot-leader" />
+          <div key={label} className="flex items-baseline gap-2 py-2">
+            <span className="text-stone-border shrink-0 text-sm">{label}</span>
+            <span className="border-stone-groove mb-[3px] min-w-2 flex-1 border-b-2 border-dotted" />
             <span className={`shrink-0 text-sm ${valueClass ?? ''}`}>{value}</span>
           </div>
         ))}

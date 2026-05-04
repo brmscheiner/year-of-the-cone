@@ -217,10 +217,6 @@ export function PineconeViewer() {
   }, []);
 
   return (
-    <div
-      ref={mountRef}
-      className="mx-auto flex items-center justify-center"
-      style={{ width: 300, height: 400 }}
-    />
+    <div ref={mountRef} className="mx-auto flex h-[400px] w-[300px] items-center justify-center" />
   );
 }

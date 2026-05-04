@@ -18,27 +18,23 @@ function TreeDetail({ tree, onBack }: { tree: Tree; onBack: () => void }) {
     <div className="flex h-full flex-col px-6 py-4">
       <button
         onClick={onBack}
-        className="dim hover:text-amber cursor-pointer self-start text-xs tracking-wider transition-colors"
-        style={{ background: 'none', border: 'none', fontFamily: 'inherit', padding: 0 }}
+        className="text-stone-border hover:text-amber cursor-pointer self-start border-0 bg-transparent p-0 font-[inherit] text-xs tracking-wider transition-colors"
       >
         ◂ BACK
       </button>
 
       <div className="mt-4">
         <div className="gold text-sm tracking-widest">{tree.common.toUpperCase()}</div>
-        <div className="dim mt-1 text-xs italic">{tree.scientific}</div>
+        <div className="text-stone-border mt-1 text-xs italic">{tree.scientific}</div>
       </div>
 
       <div className="mt-4 text-xs">
-        <span className="dim">DATE</span> {tree.date} · <span className="dim">LOCATION</span>{' '}
-        {tree.location}
+        <span className="text-stone-border">DATE</span> {tree.date} ·{' '}
+        <span className="text-stone-border">LOCATION</span> {tree.location}
       </div>
 
       {tree.notes && (
-        <div
-          className="stone-scroll mt-3 flex-1 overflow-y-auto text-sm"
-          style={{ lineHeight: '1.8' }}
-        >
+        <div className="stone-scroll mt-3 flex-1 overflow-y-auto text-sm leading-[1.8]">
           {tree.notes.split('\n\n').map((paragraph, i) => (
             <p key={i} className={i > 0 ? 'mt-2' : ''}>
               {paragraph}
@@ -80,7 +76,7 @@ export function CurrentInventory({ items }: Props) {
         ─── CURRENT INVENTORY ───
       </div>
 
-      <div style={{ height: '360px' }}>
+      <div className="h-[360px]">
         {selected ? (
           <TreeDetail tree={selected} onBack={() => setSelected(null)} />
         ) : (
@@ -94,26 +90,18 @@ export function CurrentInventory({ items }: Props) {
                 className="text-parchment placeholder-stone-border w-full bg-transparent text-xs tracking-wider outline-none"
               />
             </div>
-            <div
-              className="stone-scroll overflow-y-auto px-6 pt-2 pb-4"
-              style={{ height: '320px' }}
-            >
+            <div className="stone-scroll h-[320px] overflow-y-auto px-6 pt-2 pb-4">
               {filtered.map((tree) => (
                 <button
                   key={tree.common}
                   onClick={() => setSelected(tree)}
-                  className="stat-row text-parchment hover:text-amber w-full cursor-pointer text-left transition-colors"
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    fontFamily: 'inherit',
-                    fontSize: 'inherit',
-                    padding: '0.5rem 0',
-                  }}
+                  className="text-parchment hover:text-amber flex w-full cursor-pointer items-baseline gap-2 border-0 bg-transparent py-2 text-left font-[inherit] [font-size:inherit] transition-colors"
                 >
                   <span className="shrink-0 text-sm">{tree.common.toUpperCase()}</span>
-                  <span className="dot-leader" />
-                  <span className="dim shrink-0 text-xs italic">{tree.scientific}</span>
+                  <span className="border-stone-groove mb-[3px] min-w-2 flex-1 border-b-2 border-dotted" />
+                  <span className="text-stone-border shrink-0 text-xs italic">
+                    {tree.scientific}
+                  </span>
                 </button>
               ))}
             </div>

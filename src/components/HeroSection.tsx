@@ -17,10 +17,7 @@ export function HeroSection({ title, tagline, travelerName }: Props) {
       </div>
 
       {/* Title */}
-      <h1
-        className="glow-amber flicker mb-8 text-xl leading-relaxed tracking-widest sm:text-2xl md:text-3xl"
-        style={{ fontFamily: '"Press Start 2P", monospace' }}
-      >
+      <h1 className="glow-amber flicker font-pixel mb-8 text-xl leading-relaxed tracking-widest sm:text-2xl md:text-3xl">
         {title}
       </h1>
 
@@ -32,10 +29,7 @@ export function HeroSection({ title, tagline, travelerName }: Props) {
       </div>
 
       {/* Tagline */}
-      <p
-        className="text-parchment-dim text-sm leading-loose tracking-widest"
-        style={{ fontFamily: '"Press Start 2P", monospace' }}
-      >
+      <p className="text-parchment-dim font-pixel text-sm leading-loose tracking-widest">
         <a
           href="https://www.caseyclapp.com/yearofthecone"
           target="_blank"

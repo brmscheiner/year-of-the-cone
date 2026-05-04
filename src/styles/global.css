@@ -114,32 +114,9 @@ body::after {
   background-color: var(--color-stone-deep);
 }
 
-/* Character sheet stat rows */
-.stat-row {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
-}
-
-.dot-leader {
-  flex: 1;
-  border-bottom: 2px dotted var(--color-stone-groove);
-  margin-bottom: 3px;
-  min-width: 0.5rem;
-}
-
-.dim {
-  color: var(--color-stone-border);
-}
-
 .gold {
   color: var(--color-amber);
   text-shadow: 0 0 8px rgba(212, 168, 83, 0.5);
-}
-
-.blood {
-  color: var(--color-blood);
 }
 
 /* Torch glow text */
