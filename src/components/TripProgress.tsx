@@ -1,3 +1,6 @@
+import { TreePine } from 'pixelarticons/react/TreePine';
+import { Skull } from 'pixelarticons/react/Skull';
+
 const NOW_UTC = Date.now();
 
 interface Props {
@@ -26,7 +29,9 @@ export function TripProgress({ totalDays = 365, coneCount = 0, totalCones = 111 
       {/* Cone Count */}
       <div>
         <div className="text-stone-border mb-3 flex items-center justify-between text-sm">
-          <span>🌲 CONE COUNT</span>
+          <span className="flex items-center gap-1">
+            <TreePine className="inline h-4 w-4" /> CONE COUNT
+          </span>
           <span className="glow-amber">
             {coneCount} / {totalCones}
           </span>
@@ -56,7 +61,9 @@ export function TripProgress({ totalDays = 365, coneCount = 0, totalCones = 111 
       {/* Days Survived */}
       <div>
         <div className="text-stone-border mb-3 flex items-center justify-between text-sm">
-          <span>⏳ DAYS SURVIVED</span>
+          <span className="flex items-center gap-1">
+            <Skull className="inline h-4 w-4" /> DAYS SURVIVED
+          </span>
           <span className="glow-amber">
             {currentDay} / {totalDays}
           </span>

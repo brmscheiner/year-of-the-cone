@@ -1,3 +1,12 @@
+import type { ReactNode } from 'react';
+import { Camera } from 'pixelarticons/react/Camera';
+import { Clapperboard } from 'pixelarticons/react/Clapperboard';
+import { Play } from 'pixelarticons/react/Play';
+import { Shield } from 'pixelarticons/react/Shield';
+import { Script } from 'pixelarticons/react/Script';
+import { TreePine } from 'pixelarticons/react/TreePine';
+import { Coins } from 'pixelarticons/react/Coins';
+
 interface SocialLinks {
   instagram: string;
   tiktok: string;
@@ -12,14 +21,34 @@ interface Props {
   links: SocialLinks;
 }
 
-const SOCIAL: { key: keyof SocialLinks; label: string; icon: string; fallback: string }[] = [
-  { key: 'instagram', label: 'INSTAGRAM', icon: '📸', fallback: '#' },
-  { key: 'tiktok', label: 'TIKTOK', icon: '🎬', fallback: '#' },
-  { key: 'youtube', label: 'YOUTUBE', icon: '▶', fallback: '#' },
-  { key: 'patreon', label: 'PATREON', icon: '🛡', fallback: '#' },
-  { key: 'substack', label: 'SUBSTACK', icon: '📜', fallback: '#' },
-  { key: 'coneClub', label: 'CONE CLUB', icon: '🌲', fallback: '#' },
-  { key: 'gofundme', label: 'GOFUNDME', icon: '⚗', fallback: '#' },
+const SOCIAL: { key: keyof SocialLinks; label: string; icon: ReactNode; fallback: string }[] = [
+  {
+    key: 'instagram',
+    label: 'INSTAGRAM',
+    icon: <Camera className="inline h-5 w-5" />,
+    fallback: '#',
+  },
+  {
+    key: 'tiktok',
+    label: 'TIKTOK',
+    icon: <Clapperboard className="inline h-5 w-5" />,
+    fallback: '#',
+  },
+  { key: 'youtube', label: 'YOUTUBE', icon: <Play className="inline h-5 w-5" />, fallback: '#' },
+  { key: 'patreon', label: 'PATREON', icon: <Shield className="inline h-5 w-5" />, fallback: '#' },
+  {
+    key: 'substack',
+    label: 'SUBSTACK',
+    icon: <Script className="inline h-5 w-5" />,
+    fallback: '#',
+  },
+  {
+    key: 'coneClub',
+    label: 'CONE CLUB',
+    icon: <TreePine className="inline h-5 w-5" />,
+    fallback: '#',
+  },
+  { key: 'gofundme', label: 'GOFUNDME', icon: <Coins className="inline h-5 w-5" />, fallback: '#' },
 ];
 
 export function SocialFooter({ links }: Props) {

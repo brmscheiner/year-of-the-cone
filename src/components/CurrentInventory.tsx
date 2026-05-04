@@ -1,4 +1,6 @@
 import { useState, useDeferredValue, useMemo } from 'react';
+import { ChevronLeft } from 'pixelarticons/react/ChevronLeft';
+import { ChevronRight } from 'pixelarticons/react/ChevronRight';
 
 interface Tree {
   common: string;
@@ -20,7 +22,7 @@ function TreeDetail({ tree, onBack }: { tree: Tree; onBack: () => void }) {
         onClick={onBack}
         className="text-stone-border hover:text-amber cursor-pointer self-start border-0 bg-transparent p-0 font-[inherit] text-xs tracking-wider transition-colors"
       >
-        ◂ BACK
+        <ChevronLeft className="inline h-4 w-4" /> BACK
       </button>
 
       <div className="mt-4">
@@ -50,7 +52,7 @@ function TreeDetail({ tree, onBack }: { tree: Tree; onBack: () => void }) {
           rel="noopener noreferrer"
           className="gold mt-3 inline-block text-xs tracking-wider underline decoration-dotted underline-offset-4 transition-opacity hover:opacity-75"
         >
-          Watch on YouTube ▸
+          Watch on YouTube <ChevronRight className="inline h-4 w-4" />
         </a>
       )}
     </div>

@@ -7,6 +7,7 @@ import { StatGrid } from '../components/StatGrid';
 import { SocialFooter } from '../components/SocialFooter';
 import { PineconeViewer } from '../components/PineconeViewer';
 import { CurrentInventory } from '../components/CurrentInventory';
+import { Directions } from 'pixelarticons/react/Directions';
 
 const general = await getEntry('general', 'config');
 const counters = await getEntry('counters', 'index');
@@ -33,7 +34,9 @@ const { items } = counters.data;
         class="border-stone-groove text-parchment-dim flex flex-col items-center gap-1 border-b px-6 py-2 text-sm sm:flex-row sm:justify-between sm:gap-3"
       >
         <div class="flex items-center gap-3">
-          <span class="glow-amber">⚔ ADVENTURER</span>
+          <span class="glow-amber flex items-center gap-1"
+            ><Directions className="inline h-4 w-4" /> ADVENTURER</span
+          >
           <span>·</span>
           <span>{travelerName.toUpperCase()}</span>
         </div>
