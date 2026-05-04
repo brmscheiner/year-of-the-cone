@@ -1,6 +1,7 @@
 import { useState, useDeferredValue, useMemo } from 'react';
 import { ChevronLeft } from 'pixelarticons/react/ChevronLeft';
 import { ChevronRight } from 'pixelarticons/react/ChevronRight';
+import { Search } from 'pixelarticons/react/Search';
 
 interface Tree {
   common: string;
@@ -83,7 +84,8 @@ export function CurrentInventory({ items }: Props) {
           <TreeDetail tree={selected} onBack={() => setSelected(null)} />
         ) : (
           <>
-            <div className="border-stone-groove border-b px-6 py-3">
+            <div className="border-stone-groove flex items-center gap-2 border-b px-6 py-3">
+              <Search className="text-stone-border h-4 w-4 shrink-0" />
               <input
                 type="text"
                 value={query}
