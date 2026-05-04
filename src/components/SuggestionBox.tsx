@@ -32,59 +32,61 @@ const pts = (...pairs: number[][]) => pairs.map((p) => p.join(',')).join(' ');
 
 export function SuggestionBox() {
   return (
-    <a
-      href={HREF}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="suggestion-box-btn group mt-4 flex cursor-pointer flex-col items-center gap-2 py-3 transition-opacity hover:opacity-75"
-      style={{ textDecoration: 'none', color: 'inherit', borderBottom: 'none' }}
-    >
-      <svg
-        width={SVG_WIDTH}
-        height={SVG_HEIGHT}
-        viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+    <div className="flex justify-center">
+      <a
+        href={HREF}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="suggestion-box-btn group mt-4 flex w-fit cursor-pointer flex-col items-center gap-2 p-3 transition-opacity hover:opacity-75"
+        style={{ textDecoration: 'none', color: 'inherit', borderBottom: 'none' }}
       >
-        <polygon
-          points={pts(
-            [RIGHT, TOP],
-            [RIGHT, BOTTOM],
-            [BACK_RIGHT, BACK_BOTTOM],
-            [BACK_RIGHT, BACK_TOP],
-          )}
-          fill="var(--color-stone-deep)"
-          stroke="var(--color-amber-dim)"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <polygon
-          points={pts([LEFT, TOP], [RIGHT, TOP], [RIGHT, BOTTOM], [LEFT, BOTTOM])}
-          fill="var(--color-stone-deep)"
-          stroke="var(--color-amber)"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <polygon
-          points={pts([LEFT, TOP], [BACK_LEFT, BACK_TOP], [BACK_RIGHT, BACK_TOP], [RIGHT, TOP])}
-          fill="var(--color-stone-deep)"
-          stroke="var(--color-amber)"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-        />
-        <polygon
-          points={pts(
-            [SLOT_LEFT, SLOT_FRONT_Y],
-            [SLOT_RIGHT, SLOT_FRONT_Y],
-            [SLOT_BACK_RIGHT, SLOT_BACK_Y],
-            [SLOT_BACK_LEFT, SLOT_BACK_Y],
-          )}
-          fill="var(--color-stone-void)"
-          stroke="var(--color-amber-dim)"
-          strokeWidth="1"
-        />
-      </svg>
-      <span className="dim text-xs tracking-widest">SUGGESTION BOX</span>
-    </a>
+        <svg
+          width={SVG_WIDTH}
+          height={SVG_HEIGHT}
+          viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polygon
+            points={pts(
+              [RIGHT, TOP],
+              [RIGHT, BOTTOM],
+              [BACK_RIGHT, BACK_BOTTOM],
+              [BACK_RIGHT, BACK_TOP],
+            )}
+            fill="var(--color-stone-deep)"
+            stroke="var(--color-amber-dim)"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
+          <polygon
+            points={pts([LEFT, TOP], [RIGHT, TOP], [RIGHT, BOTTOM], [LEFT, BOTTOM])}
+            fill="var(--color-stone-deep)"
+            stroke="var(--color-amber)"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
+          <polygon
+            points={pts([LEFT, TOP], [BACK_LEFT, BACK_TOP], [BACK_RIGHT, BACK_TOP], [RIGHT, TOP])}
+            fill="var(--color-stone-deep)"
+            stroke="var(--color-amber)"
+            strokeWidth="1.5"
+            strokeLinejoin="round"
+          />
+          <polygon
+            points={pts(
+              [SLOT_LEFT, SLOT_FRONT_Y],
+              [SLOT_RIGHT, SLOT_FRONT_Y],
+              [SLOT_BACK_RIGHT, SLOT_BACK_Y],
+              [SLOT_BACK_LEFT, SLOT_BACK_Y],
+            )}
+            fill="var(--color-stone-void)"
+            stroke="var(--color-amber-dim)"
+            strokeWidth="1"
+          />
+        </svg>
+        <span className="dim text-xs tracking-widest">SUGGESTION BOX</span>
+      </a>
+    </div>
   );
 }
