@@ -72,7 +72,7 @@ export function CurrentInventory({ items }: Props) {
 
   return (
     <section>
-      <div className="border-stone-groove text-stone-border border-b py-3 text-center text-sm tracking-widest">
+      <div className="border-stone-groove text-stone-border border-y py-3 text-center text-base tracking-widest">
         ─── CURRENT INVENTORY ───
       </div>
 
@@ -86,7 +86,7 @@ export function CurrentInventory({ items }: Props) {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="SEARCH TREES..."
+                placeholder="SEARCH CONES..."
                 className="text-parchment placeholder-stone-border w-full bg-transparent text-xs tracking-wider outline-none"
               />
             </div>
@@ -95,10 +95,10 @@ export function CurrentInventory({ items }: Props) {
                 <button
                   key={tree.common}
                   onClick={() => setSelected(tree)}
-                  className="text-parchment hover:text-amber flex w-full cursor-pointer items-baseline gap-2 border-0 bg-transparent py-2 text-left font-[inherit] [font-size:inherit] transition-colors"
+                  className="text-parchment hover:text-amber flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent py-2 text-left font-[inherit] [font-size:inherit] transition-colors"
                 >
                   <span className="shrink-0 text-sm">{tree.common.toUpperCase()}</span>
-                  <span className="border-stone-groove mb-[3px] min-w-2 flex-1 border-b-2 border-dotted" />
+                  <span className="border-stone-groove min-w-2 flex-1 border-b-2 border-dotted" />
                   <span className="text-stone-border shrink-0 text-xs italic">
                     {tree.scientific}
                   </span>

@@ -22,7 +22,7 @@ const SKILLS = [
 function SkillBar({ score }: { score: number }) {
   const filled = Math.round(score / 10);
   const colorClass =
-    score >= 80 ? 'text-[#2e7d32]' : score >= 50 ? 'text-[#e07b2a]' : 'text-[#c0392b]';
+    score >= 80 ? 'text-[#2e7d32]' : score >= 50 ? 'text-[#e07b2a]' : 'text-[#cc3333]';
   return (
     <span className={`text-xs tracking-wider ${colorClass}`}>
       {'█'.repeat(filled)}
@@ -126,9 +126,9 @@ export function CharInfo({ travelerName, location, country }: Props) {
     <>
       <div className="flex flex-col justify-center">
         {rows.map(({ label, value, valueClass }) => (
-          <div key={label} className="flex items-baseline gap-2 py-2">
+          <div key={label} className="flex items-center gap-3 py-2">
             <span className="text-stone-border shrink-0 text-sm">{label}</span>
-            <span className="border-stone-groove mb-[3px] min-w-2 flex-1 border-b-2 border-dotted" />
+            <span className="border-stone-groove min-w-2 flex-1 border-b-2 border-dotted" />
             <span className={`shrink-0 text-sm ${valueClass ?? ''}`}>{value}</span>
           </div>
         ))}

@@ -37,54 +37,58 @@ export function SuggestionBox() {
         href={HREF}
         target="_blank"
         rel="noopener noreferrer"
-        className="suggestion-box-btn group mt-4 flex w-fit cursor-pointer flex-col items-center gap-2 border-b-0 p-3 [color:inherit] no-underline transition-opacity hover:opacity-75"
+        className="suggestion-box-btn group mt-4 flex w-fit cursor-pointer flex-col items-center gap-2 border-b-0 p-3 [color:inherit] no-underline"
       >
-        <svg
-          width={SVG_WIDTH}
-          height={SVG_HEIGHT}
-          viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polygon
-            points={pts(
-              [RIGHT, TOP],
-              [RIGHT, BOTTOM],
-              [BACK_RIGHT, BACK_BOTTOM],
-              [BACK_RIGHT, BACK_TOP],
-            )}
-            fill="var(--color-stone-deep)"
-            stroke="var(--color-amber-dim)"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <polygon
-            points={pts([LEFT, TOP], [RIGHT, TOP], [RIGHT, BOTTOM], [LEFT, BOTTOM])}
-            fill="var(--color-stone-deep)"
-            stroke="var(--color-amber)"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <polygon
-            points={pts([LEFT, TOP], [BACK_LEFT, BACK_TOP], [BACK_RIGHT, BACK_TOP], [RIGHT, TOP])}
-            fill="var(--color-stone-deep)"
-            stroke="var(--color-amber)"
-            strokeWidth="1.5"
-            strokeLinejoin="round"
-          />
-          <polygon
-            points={pts(
-              [SLOT_LEFT, SLOT_FRONT_Y],
-              [SLOT_RIGHT, SLOT_FRONT_Y],
-              [SLOT_BACK_RIGHT, SLOT_BACK_Y],
-              [SLOT_BACK_LEFT, SLOT_BACK_Y],
-            )}
-            fill="var(--color-stone-void)"
-            stroke="var(--color-amber-dim)"
-            strokeWidth="1"
-          />
-        </svg>
-        <span className="text-stone-border text-xs tracking-widest">SUGGESTION BOX</span>
+        <div className="transition-[filter] duration-300 group-hover:[filter:drop-shadow(0_0_4px_rgba(212,168,83,0.4))]">
+          <svg
+            width={SVG_WIDTH}
+            height={SVG_HEIGHT}
+            viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`}
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon
+              points={pts(
+                [RIGHT, TOP],
+                [RIGHT, BOTTOM],
+                [BACK_RIGHT, BACK_BOTTOM],
+                [BACK_RIGHT, BACK_TOP],
+              )}
+              fill="var(--color-stone-deep)"
+              stroke="var(--color-amber-dim)"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            <polygon
+              points={pts([LEFT, TOP], [RIGHT, TOP], [RIGHT, BOTTOM], [LEFT, BOTTOM])}
+              fill="var(--color-stone-deep)"
+              stroke="var(--color-amber-dim)"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            <polygon
+              points={pts([LEFT, TOP], [BACK_LEFT, BACK_TOP], [BACK_RIGHT, BACK_TOP], [RIGHT, TOP])}
+              fill="var(--color-stone-deep)"
+              stroke="var(--color-amber-dim)"
+              strokeWidth="1.5"
+              strokeLinejoin="round"
+            />
+            <polygon
+              points={pts(
+                [SLOT_LEFT, SLOT_FRONT_Y],
+                [SLOT_RIGHT, SLOT_FRONT_Y],
+                [SLOT_BACK_RIGHT, SLOT_BACK_Y],
+                [SLOT_BACK_LEFT, SLOT_BACK_Y],
+              )}
+              fill="var(--color-stone-void)"
+              stroke="var(--color-amber-dim)"
+              strokeWidth="1"
+            />
+          </svg>
+        </div>
+        <span className="text-stone-border text-xs tracking-widest decoration-dotted underline-offset-4 group-hover:underline">
+          SUGGESTION BOX
+        </span>
       </a>
     </div>
   );

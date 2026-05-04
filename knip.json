@@ -1,0 +1,5 @@
+{
+  "entry": ["src/pages/**/*.astro", "src/layouts/**/*.astro"],
+  "project": ["src/**/*.{astro,ts,tsx}"],
+  "ignoreDependencies": ["tailwindcss"]
+}

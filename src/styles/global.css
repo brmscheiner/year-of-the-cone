@@ -6,7 +6,7 @@
   --color-stone-deep: #0e0b0a;
   --color-stone-mid: #1a1410;
   --color-stone-groove: #2a1f0e;
-  --color-stone-muted: #3a2a14;
+  --color-stone-muted: #4a3820;
   --color-stone-border: #5c4a2a;
 
   /* Text — warm neutrals */
@@ -18,10 +18,10 @@
   --color-amber: #d4a853;
 
   /* Blood red accent */
-  --color-blood-void: #2a0a0a;
-  --color-blood-border: #6b1a1a;
-  --color-blood: #8b2222;
-  --color-blood-bright: #c0392b;
+  --color-blood-void: #2f0c0c;
+  --color-blood-border: #751c1c;
+  --color-blood: #9f2727;
+  --color-blood-bright: #cc3333;
 
   /* Moss green accent */
   --color-moss-void: #0a1a08;
@@ -81,7 +81,7 @@ body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, transparent 40%, rgba(4, 2, 4, 0.75) 100%);
+  background: radial-gradient(ellipse at 50% 30%, transparent 50%, rgba(4, 2, 4, 0.35) 100%);
   pointer-events: none;
   z-index: 9998;
 }
