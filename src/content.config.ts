@@ -36,4 +36,20 @@ const counters = defineCollection({
   }),
 });
 
-export const collections = { general, counters };
+const inventory = defineCollection({
+  loader: file('src/content/inventory/index.yaml'),
+  schema: z.object({
+    items: z.array(
+      z.object({
+        common: z.string(),
+        scientific: z.string(),
+        date: z.string(),
+        location: z.string(),
+        notes: z.string().optional(),
+        youtube: z.string().optional(),
+      }),
+    ),
+  }),
+});
+
+export const collections = { general, counters, inventory };

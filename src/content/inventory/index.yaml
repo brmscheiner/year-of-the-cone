@@ -1,0 +1,163 @@
+- id: index
+  items:
+    - common: 'Douglas Fir'
+      scientific: 'Pseudotsuga menziesii'
+      date: 'March 2'
+      location: 'Santa Fe, NM'
+      notes: >-
+        Had to fight a badger for this one. Literally squared up with a honey badger
+        at the base of the tree while trying to collect a cone. It hissed, I hissed back,
+        and we both walked away with our dignity mostly intact.
+
+
+        The tree itself was stunning — about 200 feet tall with deeply furrowed bark.
+        Found it on a ridge trail just outside town. The three-pronged bracts on the
+        cones are unmistakable once you know what to look for.
+      youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+
+    - common: 'Ponderosa Pine'
+      scientific: 'Pinus ponderosa'
+      date: 'March 8'
+      location: 'Flagstaff, AZ'
+      notes: >-
+        Bark smelled like butterscotch in the sun. Pressed my nose right up against
+        the cracks in the bark plates and just stood there breathing it in for a solid
+        five minutes. A couple of hikers walked by and gave me a look.
+
+
+        This grove was at about 7,000 feet elevation on the outskirts of town.
+        The puzzle-piece bark pattern on the older trees is incredible — orange and
+        black plates that look like they were hand-painted. Collected three cones,
+        all in great shape.
+      youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+
+    - common: 'Western Red Cedar'
+      scientific: 'Thuja plicata'
+      date: 'March 15'
+      location: 'Olympic National Park, WA'
+
+    - common: 'Sitka Spruce'
+      scientific: 'Picea sitchensis'
+      date: 'March 21'
+      location: 'Cannon Beach, OR'
+      notes: >-
+        Absolutely massive specimen right off the trail. The trunk was easily
+        ten feet in diameter. Needles are sharp and stiff — learned that the hard
+        way grabbing a branch without gloves.
+
+
+        Spent about an hour sketching it in the field journal. The fog was rolling
+        in off the coast and wrapping around the canopy in a way that made the
+        whole forest feel like a cathedral. One of those moments where you just
+        stop and sit for a while.
+
+    - common: 'Bigleaf Maple'
+      scientific: 'Acer macrophyllum'
+      date: 'April 3'
+      location: 'Portland, OR'
+      notes: 'Draped head to toe in moss. Looked more like a green ghost than a tree.'
+      youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+
+    - common: 'Lodgepole Pine'
+      scientific: 'Pinus contorta'
+      date: 'April 7'
+      location: 'Yellowstone, WY'
+
+    - common: 'Quaking Aspen'
+      scientific: 'Populus tremuloides'
+      date: 'April 9'
+      location: 'Yellowstone, WY'
+      notes: 'The whole hillside was one organism connected by roots.'
+
+    - common: 'Engelmann Spruce'
+      scientific: 'Picea engelmannii'
+      date: 'April 12'
+      location: 'Glacier National Park, MT'
+
+    - common: 'Western Larch'
+      scientific: 'Larix occidentalis'
+      date: 'April 14'
+      location: 'Glacier National Park, MT'
+      notes: 'A deciduous conifer. Needles were just starting to come in bright green.'
+
+    - common: 'Whitebark Pine'
+      scientific: 'Pinus albicaulis'
+      date: 'April 16'
+      location: 'Glacier National Park, MT'
+
+    - common: 'Grand Fir'
+      scientific: 'Abies grandis'
+      date: 'April 20'
+      location: "Coeur d'Alene, ID"
+      notes: 'Crushed the needles and they smelled like oranges.'
+
+    - common: 'Western White Pine'
+      scientific: 'Pinus monticola'
+      date: 'April 22'
+      location: 'McCall, ID'
+
+    - common: 'Mountain Hemlock'
+      scientific: 'Tsuga mertensiana'
+      date: 'April 25'
+      location: 'Mt. Rainier, WA'
+
+    - common: 'Noble Fir'
+      scientific: 'Abies procera'
+      date: 'April 28'
+      location: 'Mt. Hood, OR'
+      notes: 'Cones were standing straight up like candles on the branches.'
+
+    - common: 'Shore Pine'
+      scientific: 'Pinus contorta var. contorta'
+      date: 'May 1'
+      location: 'Bandon, OR'
+
+    - common: 'Port Orford Cedar'
+      scientific: 'Chamaecyparis lawsoniana'
+      date: 'May 3'
+      location: 'Gold Beach, OR'
+
+    - common: 'Coast Redwood'
+      scientific: 'Sequoia sempervirens'
+      date: 'May 6'
+      location: 'Jedediah Smith, CA'
+      notes: 'Stood at the base and could not see the top. Neck hurt from trying.'
+      youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+
+    - common: 'Tanoak'
+      scientific: 'Notholithocarpus densiflorus'
+      date: 'May 8'
+      location: 'Prairie Creek, CA'
+
+    - common: 'Pacific Madrone'
+      scientific: 'Arbutus menziesii'
+      date: 'May 10'
+      location: 'Ashland, OR'
+      notes: 'Peeling red bark that feels cold and smooth like skin.'
+
+    - common: 'Incense Cedar'
+      scientific: 'Calocedrus decurrens'
+      date: 'May 13'
+      location: 'Crater Lake, OR'
+
+    - common: 'Sugar Pine'
+      scientific: 'Pinus lambertiana'
+      date: 'May 15'
+      location: 'Crater Lake, OR'
+      notes: 'Longest cones of any conifer. Found one on the ground that was nearly two feet.'
+
+    - common: 'Subalpine Fir'
+      scientific: 'Abies lasiocarpa'
+      date: 'May 18'
+      location: 'Mt. Bachelor, OR'
+
+    - common: 'Oregon White Oak'
+      scientific: 'Quercus garryana'
+      date: 'May 20'
+      location: 'Willamette Valley, OR'
+
+    - common: 'Red Alder'
+      scientific: 'Alnus rubra'
+      date: 'May 22'
+      location: 'Tillamook, OR'
+      notes: 'Fixes nitrogen in the soil. The bark makes a red dye.'

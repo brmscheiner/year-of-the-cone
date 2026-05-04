@@ -6,9 +6,11 @@ import { TripProgress } from '../components/TripProgress';
 import { StatGrid } from '../components/StatGrid';
 import { SocialFooter } from '../components/SocialFooter';
 import { PineconeViewer } from '../components/PineconeViewer';
+import { CurrentInventory } from '../components/CurrentInventory';
 
 const general = await getEntry('general', 'config');
 const counters = await getEntry('counters', 'index');
+const inventory = await getEntry('inventory', 'index');
 
 const {
   travelerName,
@@ -89,6 +91,9 @@ const { items } = counters.data;
 
       {/* Codex */}
       <StatGrid items={items} client:load />
+
+      {/* Inventory */}
+      <CurrentInventory items={inventory.data.items} client:load />
     </div>
   </main>
 
