@@ -81,7 +81,7 @@ function CharDialog({ travelerName, onClose }: { travelerName: string; onClose: 
 
           {/* Col 2: skills */}
           <div className="flex flex-col justify-center px-5 py-8">
-            <div className="text-stone-border mb-3 text-[0.65rem] tracking-widest">SKILL SHEET</div>
+            <div className="text-stone-border mb-3 text-sm tracking-widest">SKILL SHEET</div>
             {SKILLS.map(({ label, value }) => (
               <div key={label} className="flex items-baseline gap-2 py-[0.4rem]">
                 <span className="text-stone-border shrink-0 text-[0.65rem]">{label}</span>

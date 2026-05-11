@@ -1,4 +1,4 @@
-const HREF = 'https://www.patreon.com/CaseyClapp';
+const HREF = 'https://www.patreon.com/CaseyClapp/membership';
 
 const BOX_WIDTH = 42;
 const BOX_HEIGHT = 26;
