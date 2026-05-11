@@ -4,8 +4,8 @@ import { Clapperboard } from 'pixelarticons/react/Clapperboard';
 import { Play } from 'pixelarticons/react/Play';
 import { Shield } from 'pixelarticons/react/Shield';
 import { Script } from 'pixelarticons/react/Script';
+import { Coins } from 'pixelarticons/react/Coins';
 import { PineconeIcon } from './PineconeIcon';
-import { DollarIcon } from './DollarIcon';
 
 interface SocialLinks {
   instagram: string;
@@ -51,7 +51,7 @@ const SOCIAL: { key: keyof SocialLinks; label: string; icon: ReactNode; fallback
   {
     key: 'gofundme',
     label: 'GOFUNDME',
-    icon: <DollarIcon className="inline h-5 w-5" />,
+    icon: <Coins className="inline h-5 w-5" />,
     fallback: '#',
   },
 ];
