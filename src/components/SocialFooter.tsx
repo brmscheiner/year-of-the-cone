@@ -5,7 +5,7 @@ import { Play } from 'pixelarticons/react/Play';
 import { Shield } from 'pixelarticons/react/Shield';
 import { Script } from 'pixelarticons/react/Script';
 import { PineconeIcon } from './PineconeIcon';
-import { Coins } from 'pixelarticons/react/Coins';
+import { DollarIcon } from './DollarIcon';
 
 interface SocialLinks {
   instagram: string;
@@ -48,7 +48,12 @@ const SOCIAL: { key: keyof SocialLinks; label: string; icon: ReactNode; fallback
     icon: <PineconeIcon className="inline h-5 w-5" />,
     fallback: '#',
   },
-  { key: 'gofundme', label: 'GOFUNDME', icon: <Coins className="inline h-5 w-5" />, fallback: '#' },
+  {
+    key: 'gofundme',
+    label: 'GOFUNDME',
+    icon: <DollarIcon className="inline h-5 w-5" />,
+    fallback: '#',
+  },
 ];
 
 export function SocialFooter({ links }: Props) {
