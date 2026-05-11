@@ -1,23 +1,23 @@
 items:
-  - label: 'Miles Driven'
+  - label: States Visited
+    value: 69
+  - label: Miles Driven
     value: 847
-  - label: 'States Visited'
-    value: 4
-  - label: 'Miles Hiked'
+  - label: Miles Hiked
     value: 23
-  - label: 'Feet Ascended'
+  - label: Feet Ascended
     value: 14200
-  - label: 'Trees Identified'
+  - label: Trees Identified
     value: 47
-  - label: 'Truck Nights'
+  - label: Truck Nights
     value: 8
-  - label: 'Bed Nights'
+  - label: Bed Nights
     value: 3
-  - label: 'Holes Pooped In'
+  - label: Holes Pooped In
     value: 11
-  - label: 'Parks Visited'
+  - label: Parks Visited
     value: 6
-  - label: 'Dollars Spent'
+  - label: Dollars Spent
     value: 1243
-  - label: 'Books Read'
+  - label: Books Read
     value: 2
