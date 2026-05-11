@@ -1,8 +1,15 @@
 import { defineCollection, z } from 'astro:content';
 import { file } from 'astro/loaders';
+import yaml from 'js-yaml';
+
+function yamlEntry(fileName: string, id: string) {
+  return file(fileName, {
+    parser: (text) => [{ id, ...(yaml.load(text) as Record<string, unknown>) }],
+  });
+}
 
 const general = defineCollection({
-  loader: file('src/content/general/index.yaml'),
+  loader: yamlEntry('src/content/general/index.yaml', 'config'),
   schema: z.object({
     travelerName: z.string(),
     title: z.string(),
@@ -24,7 +31,7 @@ const general = defineCollection({
 });
 
 const counters = defineCollection({
-  loader: file('src/content/counters/index.yaml'),
+  loader: yamlEntry('src/content/counters/index.yaml', 'index'),
   schema: z.object({
     items: z.array(
       z.object({
@@ -37,7 +44,7 @@ const counters = defineCollection({
 });
 
 const inventory = defineCollection({
-  loader: file('src/content/inventory/index.yaml'),
+  loader: yamlEntry('src/content/inventory/index.yaml', 'index'),
   schema: z.object({
     items: z.array(
       z.object({

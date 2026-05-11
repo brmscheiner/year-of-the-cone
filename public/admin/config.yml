@@ -13,10 +13,6 @@ collections:
         label: "General Settings"
         file: "src/content/general/index.yaml"
         fields:
-          - label: "ID"
-            name: "id"
-            widget: "hidden"
-            default: "config"
           - label: "Your Name"
             name: "travelerName"
             widget: "string"
@@ -84,10 +80,6 @@ collections:
         label: "Travel Counters"
         file: "src/content/counters/index.yaml"
         fields:
-          - label: "ID"
-            name: "id"
-            widget: "hidden"
-            default: "index"
           - label: "Counters"
             name: "items"
             widget: "list"

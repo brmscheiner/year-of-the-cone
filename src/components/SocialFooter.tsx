@@ -4,7 +4,7 @@ import { Clapperboard } from 'pixelarticons/react/Clapperboard';
 import { Play } from 'pixelarticons/react/Play';
 import { Shield } from 'pixelarticons/react/Shield';
 import { Script } from 'pixelarticons/react/Script';
-import { TreePine } from 'pixelarticons/react/TreePine';
+import { PineconeIcon } from './PineconeIcon';
 import { Coins } from 'pixelarticons/react/Coins';
 
 interface SocialLinks {
@@ -45,7 +45,7 @@ const SOCIAL: { key: keyof SocialLinks; label: string; icon: ReactNode; fallback
   {
     key: 'coneClub',
     label: 'CONE CLUB',
-    icon: <TreePine className="inline h-5 w-5" />,
+    icon: <PineconeIcon className="inline h-5 w-5" />,
     fallback: '#',
   },
   { key: 'gofundme', label: 'GOFUNDME', icon: <Coins className="inline h-5 w-5" />, fallback: '#' },

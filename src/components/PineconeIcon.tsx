@@ -6,32 +6,83 @@ export function PineconeIcon(props: SVGProps<SVGSVGElement>) {
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      fill="none"
-      strokeWidth="1.5"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path
-        d="M9.5 22L7 21.5L6.5 20L5.5 19.5L3.5 19L3 17L4 16.5L3 16L2 14.5L3.5 13.5L2.5 13V11.5L4 11L3 10.5V9L5 8.5L4 7.5L5 5.5L6.5 6L6 4.5L8 3.5H9.5L9 2.5L11 2L14 2.5L13.5 4L14.5 3.5H16L16.5 4.5V5.5H18L19 6.5L18.5 8.5L20 7.5H20.5L21 9.5L20 11H21L21.5 11.5L20.5 14H21.5V16L19.5 17.5L20.5 18V19L19.5 20L17.5 20.5L16.5 21V22L14.5 22.5H12.5L9.5 22Z"
-        stroke="currentColor"
-      />
-      <path d="M8.5 21L9.5 20.5H10.5" stroke="currentColor" />
-      <path d="M14 20L15 19.5L16.5 20" stroke="currentColor" />
-      <path d="M16 18.5L17 18L18.5 18.5" stroke="currentColor" />
-      <path d="M15.5 16L17 15.5L18.5 16" stroke="currentColor" />
-      <path d="M11 17.5L12.5 16.5L14 17" stroke="currentColor" />
-      <path d="M5.5 18L7.5 17.5L9 18" stroke="currentColor" />
-      <path d="M6 16L8.5 15L10.5 16.5" stroke="currentColor" />
-      <path d="M12.5 14.5L14.5 13.5L17 14" stroke="currentColor" />
-      <path d="M5 14L6.5 13L8.5 13.5" stroke="currentColor" />
-      <path d="M10 12.5L12 11.5L13.5 12" stroke="currentColor" />
-      <path d="M15.4347 12.222L17.09 11.5081L18.4757 12.2697" stroke="currentColor" />
-      <path d="M14 9.5L15.5 9L17.5 9.5" stroke="currentColor" />
-      <path d="M10.5 9.5L11.5 9H12.5" stroke="currentColor" />
-      <path d="M5 10L7 9.5L8.5 10.5" stroke="currentColor" />
-      <path d="M7 7.5L8.5 6.5L10.5 7" stroke="currentColor" />
-      <path d="M12 7L13.5 6.5L15 7" stroke="currentColor" />
-      <path d="M9.5 5.5L11.5 4.5L13 5.5" stroke="currentColor" />
+      <rect x="7" y="20" width="1" height="3" />
+      <rect x="10" y="21" width="1" height="2" />
+      <rect x="12" y="20" width="1" height="2" transform="rotate(90 12 20)" />
+      <rect x="10" y="22" width="1" height="2" transform="rotate(90 10 22)" />
+      <rect x="15" y="20" width="1" height="3" transform="rotate(90 15 20)" />
+      <rect x="16" y="19" width="1" height="2" transform="rotate(90 16 19)" />
+      <rect x="13" y="16" width="1" height="2" transform="rotate(90 13 16)" />
+      <rect x="12" y="17" width="1" height="3" transform="rotate(90 12 17)" />
+      <rect x="14" y="10" width="1" height="2" transform="rotate(90 14 10)" />
+      <rect x="17" y="11" width="1" height="2" transform="rotate(90 17 11)" />
+      <rect x="16" y="10" width="1" height="2" transform="rotate(90 16 10)" />
+      <rect x="18" y="10" width="1" height="2" transform="rotate(90 18 10)" />
+      <rect x="19" y="9" width="1" height="2" transform="rotate(90 19 9)" />
+      <rect x="15" y="15" width="1" height="2" transform="rotate(90 15 15)" />
+      <rect x="17" y="15" width="1" height="2" transform="rotate(90 17 15)" />
+      <rect x="16" y="18" width="1" height="2" />
+      <rect x="17" y="17" width="1" height="2" />
+      <rect x="16" y="16" width="1" height="2" />
+      <rect x="18" y="14" width="1" height="2" transform="rotate(90 18 14)" />
+      <rect x="18" y="16" width="1" height="2" />
+      <rect x="18" y="14" width="1" height="2" />
+      <rect x="19" y="13" width="1" height="2" />
+      <rect x="19" y="11" width="1" height="2" />
+      <rect x="20" y="8" width="1" height="4" />
+      <rect x="19" y="7" width="1" height="2" />
+      <rect x="18" y="6" width="1" height="2" />
+      <rect x="18" y="3" width="1" height="2" />
+      <rect x="19" y="4" width="1" height="3" />
+      <rect x="17" y="2" width="1" height="2" />
+      <rect x="13" y="8" width="1" height="2" />
+      <rect x="11" y="11" width="1" height="2" />
+      <rect x="12" y="12" width="1" height="2" />
+      <rect x="12" y="11" width="1" height="2" />
+      <rect x="12" y="14" width="1" height="2" />
+      <rect x="11" y="18" width="1" height="2" />
+      <rect x="7" y="17" width="1" height="3" />
+      <rect x="7" y="15" width="1" height="2" />
+      <rect x="6" y="14" width="1" height="2" />
+      <rect x="17" y="12" width="1" height="2" />
+      <rect x="16" y="11" width="1" height="2" />
+      <rect x="19" y="9" width="1" height="1" />
+      <rect x="15" y="4" width="1" height="2" />
+      <rect x="14" y="3" width="1" height="2" />
+      <rect x="15" y="2" width="1" height="2" transform="rotate(-90 15 2)" />
+      <rect x="12" y="2" width="1" height="3" transform="rotate(-90 12 2)" />
+      <rect x="10" y="3" width="1" height="3" transform="rotate(-90 10 3)" />
+      <rect x="12" y="4" width="1" height="2" transform="rotate(-90 12 4)" />
+      <rect x="9" y="4" width="1" height="2" transform="rotate(-90 9 4)" />
+      <rect x="8" y="5" width="1" height="2" transform="rotate(-90 8 5)" />
+      <rect x="7" y="6" width="1" height="2" transform="rotate(-90 7 6)" />
+      <rect x="6" y="7" width="1" height="2" transform="rotate(-90 6 7)" />
+      <rect x="5" y="20" width="1" height="3" transform="rotate(-90 5 20)" />
+      <rect x="8" y="20" width="1" height="3" transform="rotate(-90 8 20)" />
+      <rect x="8" y="17" width="1" height="2" transform="rotate(-90 8 17)" />
+      <rect x="9" y="13" width="1" height="2" transform="rotate(-90 9 13)" />
+      <rect x="5" y="14" width="1" height="2" transform="rotate(-90 5 14)" />
+      <rect x="11" y="7" width="1" height="2" transform="rotate(-90 11 7)" />
+      <rect x="12" y="8" width="1" height="2" transform="rotate(-90 12 8)" />
+      <rect x="14" y="7" width="1" height="2" transform="rotate(-90 14 7)" />
+      <rect x="16" y="7" width="1" height="2" transform="rotate(-90 16 7)" />
+      <rect x="7" y="9" width="1" height="2" transform="rotate(-90 7 9)" />
+      <rect x="7" y="9" width="1" height="2" transform="rotate(-180 7 9)" />
+      <rect x="6" y="11" width="1" height="3" transform="rotate(-180 6 11)" />
+      <rect x="8" y="14" width="1" height="2" transform="rotate(-180 8 14)" />
+      <rect x="9" y="13" width="1" height="2" transform="rotate(-180 9 13)" />
+      <rect x="9" y="11" width="1" height="2" transform="rotate(-180 9 11)" />
+      <rect x="10" y="9" width="1" height="2" transform="rotate(-180 10 9)" />
+      <rect x="11" y="8" width="1" height="2" transform="rotate(-180 11 8)" />
+      <rect x="11" y="6" width="1" height="2" transform="rotate(-180 11 6)" />
+      <rect x="5" y="13" width="1" height="3" transform="rotate(-180 5 13)" />
+      <rect x="5" y="15" width="1" height="2" transform="rotate(-180 5 15)" />
+      <rect x="5" y="18" width="1" height="3" transform="rotate(-180 5 18)" />
+      <rect x="6" y="19" width="1" height="2" transform="rotate(-180 6 19)" />
     </svg>
   );
 }
