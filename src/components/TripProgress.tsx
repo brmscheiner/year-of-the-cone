@@ -1,5 +1,5 @@
-import { TreePine } from 'pixelarticons/react/TreePine';
 import { Skull } from 'pixelarticons/react/Skull';
+import { PineconeIcon } from './PineconeIcon';
 
 const NOW_UTC = Date.now();
 
@@ -30,7 +30,7 @@ export function TripProgress({ totalDays = 365, coneCount = 0, totalCones = 111 
       <div>
         <div className="text-stone-border mb-3 flex items-center justify-between text-sm">
           <span className="flex items-center gap-1">
-            <TreePine className="inline h-4 w-4" /> CONE COUNT
+            <PineconeIcon className="inline h-4 w-4" /> CONE COUNT
           </span>
           <span className="glow-amber">
             {coneCount} / {totalCones}

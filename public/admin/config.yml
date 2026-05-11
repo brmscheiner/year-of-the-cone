@@ -91,7 +91,7 @@ collections:
           - label: "Counters"
             name: "items"
             widget: "list"
-            summary: "{{fields.icon}} {{fields.label}}: {{fields.value}}"
+            summary: "{{fields.label}}: {{fields.value}}"
             fields:
               - label: "Label"
                 name: "label"
@@ -102,8 +102,3 @@ collections:
                 widget: "number"
                 value_type: "int"
                 min: 0
-              - label: "Icon (emoji)"
-                name: "icon"
-                widget: "string"
-                hint: "Paste any emoji, e.g. 🏨"
-                pattern: ['.', "Required"]
