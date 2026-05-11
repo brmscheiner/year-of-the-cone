@@ -52,6 +52,12 @@ function TreeDetail({ tree, onBack }: { tree: Tree; onBack: () => void }) {
           target="_blank"
           rel="noopener noreferrer"
           className="gold mt-3 inline-block text-xs tracking-wider underline decoration-dotted underline-offset-4 transition-opacity hover:opacity-75"
+          onClick={() =>
+            window.posthog?.capture('cone_youtube_clicked', {
+              common: tree.common,
+              scientific: tree.scientific,
+            })
+          }
         >
           Watch on YouTube <ChevronRight className="inline h-4 w-4" />
         </a>
@@ -64,6 +70,22 @@ export function CurrentInventory({ items }: Props) {
   const [query, setQuery] = useState('');
   const [selected, setSelected] = useState<Tree | null>(null);
   const deferredQuery = useDeferredValue(query);
+
+  function handleSearch(value: string) {
+    setQuery(value);
+    if (value) {
+      window.posthog?.capture('inventory_searched', { query: value });
+    }
+  }
+
+  function handleSelectTree(tree: Tree) {
+    setSelected(tree);
+    window.posthog?.capture('cone_detail_viewed', {
+      common: tree.common,
+      scientific: tree.scientific,
+      location: tree.location,
+    });
+  }
 
   const filtered = useMemo(() => {
     if (!deferredQuery) return items;
@@ -89,7 +111,7 @@ export function CurrentInventory({ items }: Props) {
               <input
                 type="text"
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                onChange={(e) => handleSearch(e.target.value)}
                 placeholder="SEARCH CONES..."
                 className="text-parchment placeholder-stone-border w-full bg-transparent text-xs tracking-wider outline-none"
               />
@@ -98,7 +120,7 @@ export function CurrentInventory({ items }: Props) {
               {filtered.map((tree) => (
                 <button
                   key={tree.common}
-                  onClick={() => setSelected(tree)}
+                  onClick={() => handleSelectTree(tree)}
                   className="text-parchment hover:text-amber flex w-full cursor-pointer items-center gap-3 border-0 bg-transparent py-2 text-left font-[inherit] [font-size:inherit] transition-colors"
                 >
                   <span className="shrink-0 text-sm">{tree.common.toUpperCase()}</span>

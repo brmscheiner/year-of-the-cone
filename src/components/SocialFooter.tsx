@@ -71,6 +71,9 @@ export function SocialFooter({ links }: Props) {
               target={links[key] ? '_blank' : undefined}
               rel="noopener noreferrer"
               className="text-amber text-base tracking-widest transition-[text-shadow] duration-300 hover:[text-shadow:0_0_8px_rgba(212,168,83,0.7),0_0_20px_rgba(212,168,83,0.3)]"
+              onClick={() =>
+                window.posthog?.capture('social_link_clicked', { platform: key, label })
+              }
             >
               <span className="mr-2">{icon}</span>
               <span className="decoration-dotted underline-offset-4 hover:underline">{label}</span>

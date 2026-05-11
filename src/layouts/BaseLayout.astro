@@ -1,4 +1,6 @@
 ---
+import PostHog from '../components/posthog.astro';
+
 interface Props {
   title: string;
   description?: string;
@@ -17,6 +19,7 @@ const { title, description = "Casey's year-long travel adventure — live stats 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <title>{title}</title>
+    <PostHog />
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body class="bg-stone-void text-parchment min-h-screen overflow-x-hidden">

@@ -38,6 +38,7 @@ export function SuggestionBox() {
         target="_blank"
         rel="noopener noreferrer"
         className="suggestion-box-btn group mt-4 flex w-fit cursor-pointer flex-col items-center gap-2 border-b-0 p-3 [color:inherit] no-underline"
+        onClick={() => window.posthog?.capture('suggestion_box_clicked')}
       >
         <div className="transition-[filter] duration-300 group-hover:[filter:drop-shadow(0_0_4px_rgba(212,168,83,0.4))]">
           <svg
