@@ -4,9 +4,6 @@ import { SuggestionBox } from './SuggestionBox';
 interface Props {
   travelerName: string;
   location: string;
-  country: string;
-  startDate: string;
-  totalDays?: number;
 }
 
 const SKILLS = [
@@ -96,7 +93,7 @@ function CharDialog({ travelerName, onClose }: { travelerName: string; onClose: 
   );
 }
 
-export function CharInfo({ travelerName, location, country }: Props) {
+export function CharInfo({ travelerName, location }: Props) {
   const [open, setOpen] = useState(false);
 
   const rows: { label: string; value: ReactNode; valueClass?: string }[] = [
@@ -111,7 +108,7 @@ export function CharInfo({ travelerName, location, country }: Props) {
         </button>
       ),
     },
-    { label: 'LOCATION', value: `${location.toUpperCase()}, ${country.toUpperCase()}` },
+    { label: 'LOCATION', value: location.toUpperCase() },
     {
       label: 'STATUS',
       value: (

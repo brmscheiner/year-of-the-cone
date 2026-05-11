@@ -13,16 +13,7 @@ const general = await getEntry('general', 'config');
 const counters = await getEntry('counters', 'index');
 const inventory = await getEntry('inventory', 'index');
 
-const {
-  travelerName,
-  title,
-  tagline,
-  startDate,
-  currentLocation,
-  currentCountry,
-  socialLinks,
-  coneCount = 0,
-} = general.data;
+const { travelerName, title, tagline, currentLocation, socialLinks, coneCount = 0 } = general.data;
 const { items } = counters.data;
 ---
 
@@ -72,13 +63,7 @@ const { items } = counters.data;
         {/* Char info + progress */}
         <div class="flex flex-col">
           <div class="flex-1 px-8 py-6">
-            <CharInfo
-              travelerName={travelerName}
-              location={currentLocation}
-              country={currentCountry}
-              startDate={startDate}
-              client:only="react"
-            />
+            <CharInfo travelerName={travelerName} location={currentLocation} client:only="react" />
           </div>
           <div class="border-stone-groove border-t px-8 py-6">
             <TripProgress coneCount={coneCount} client:only="react" />

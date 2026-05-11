@@ -15,9 +15,7 @@ const general = defineCollection({
     title: z.string(),
     tagline: z.string(),
     coneCount: z.number().optional(),
-    startDate: z.string(),
     currentLocation: z.string(),
-    currentCountry: z.string(),
     socialLinks: z.object({
       instagram: z.string(),
       tiktok: z.string(),
