@@ -177,18 +177,18 @@ export function PineconeViewer() {
     renderer.setClearColor(0x000000, 0);
     el.appendChild(renderer.domElement);
 
-    scene.add(new THREE.HemisphereLight(0x6a3a10, 0x0a0604, 1.2));
+    scene.add(new THREE.HemisphereLight(0x8a5a20, 0x1a0e08, 2.0));
 
-    const main = new THREE.DirectionalLight(0xffe0b0, 2.8);
+    const main = new THREE.DirectionalLight(0xffe0b0, 2.4);
     main.position.set(5, 7, 6);
     scene.add(main);
 
-    const fill = new THREE.DirectionalLight(0x8a6030, 0.5);
-    fill.position.set(-4, 2, 4);
+    const fill = new THREE.DirectionalLight(0xc09050, 1.4);
+    fill.position.set(-5, 2, 5);
     scene.add(fill);
 
-    const rim = new THREE.DirectionalLight(0x4a3020, 0.4);
-    rim.position.set(-5, 0, -8);
+    const rim = new THREE.DirectionalLight(0x906838, 1.0);
+    rim.position.set(-4, -1, -6);
     scene.add(rim);
 
     const geo = new THREE.BoxGeometry(VOXEL, VOXEL, VOXEL);
