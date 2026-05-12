@@ -1,124 +1,151 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-// ---------------------------------------------------------------------------
-// Geometry: fine 0.5-unit grid gives 4× the cross-section resolution
-// ---------------------------------------------------------------------------
-
 const STEP = 0.5;
-const VOXEL = 0.46; // slightly smaller than step → small gap between cubes
+const VOXEL = 0.46;
 
-// Profile: [world_y, max_radius] — defines the pinecone silhouette
 const PROFILE: [number, number][] = [
-  [-5.0, 0.0], // stem base
-  [-4.5, 0.0], // stem
-  [-4.0, 0.0], // stem
-  [-3.5, 0.5], // skirt starts
-  [-3.0, 1.1],
-  [-2.5, 1.7],
-  [-2.0, 2.2],
-  [-1.5, 2.5], // widest
-  [-1.0, 2.5], // widest
-  [-0.5, 2.4],
-  [0.0, 2.2],
-  [0.5, 2.0],
-  [1.0, 1.7],
-  [1.5, 1.4],
-  [2.0, 1.1],
+  [-6.0, 0.0],
+  [-5.5, 0.7],
+  [-5.0, 1.4],
+  [-4.5, 2.1],
+  [-4.0, 2.6],
+  [-3.5, 2.9],
+  [-3.0, 3.1],
+  [-2.5, 3.1],
+  [-2.0, 3.1],
+  [-1.5, 3.1],
+  [-1.0, 3.1],
+  [-0.5, 3.0],
+  [0.0, 2.8],
+  [0.5, 2.5],
+  [1.0, 2.1],
+  [1.5, 1.7],
+  [2.0, 1.3],
   [2.5, 0.8],
-  [3.0, 0.5],
-  [3.5, 0.25],
-  [4.0, 0.0], // tip
+  [3.0, 0.4],
+  [3.5, 0.0],
 ];
-
-// ---------------------------------------------------------------------------
-// Build voxel list
-// ---------------------------------------------------------------------------
 
 interface Voxel {
   x: number;
   y: number;
   z: number;
-  isStem: boolean;
   isOuter: boolean;
 }
 
 function buildVoxels(): Voxel[] {
-  const raw: [number, number, number, boolean][] = []; // x,y,z,isStem
+  const raw: [number, number, number][] = [];
 
   for (const [y, maxR] of PROFILE) {
-    if (maxR === 0) {
-      if (y >= -5) raw.push([0, y, 0, true]); // stem voxel
-      continue;
-    }
+    if (maxR === 0) continue;
     const extent = Math.ceil(maxR / STEP);
     for (let xi = -extent; xi <= extent; xi++) {
       for (let zi = -extent; zi <= extent; zi++) {
         const x = xi * STEP;
         const z = zi * STEP;
         if (x * x + z * z <= maxR * maxR) {
-          raw.push([x, y, z, false]);
+          raw.push([x, y, z]);
         }
       }
     }
   }
 
-  // Build a position set to identify outer voxels
   const posSet = new Set(raw.map(([x, y, z]) => `${x},${y},${z}`));
 
-  return raw.map(([x, y, z, isStem]) => {
-    const isOuter =
-      !isStem &&
-      [
-        [x + STEP, z],
-        [x - STEP, z],
-        [x, z + STEP],
-        [x, z - STEP],
-      ].some(([nx, nz]) => !posSet.has(`${nx},${y},${nz}`));
-    return { x, y, z, isStem, isOuter };
+  return raw.map(([x, y, z]) => {
+    const isOuter = [
+      [x + STEP, z],
+      [x - STEP, z],
+      [x, z + STEP],
+      [x, z - STEP],
+    ].some(([nx, nz]) => !posSet.has(`${nx},${y},${nz}`));
+    return { x, y, z, isOuter };
   });
 }
 
 const VOXELS = buildVoxels();
 
-// ---------------------------------------------------------------------------
-// Color — height gradient + spiral stripe to fake the scale pattern
-// ---------------------------------------------------------------------------
+function getScaleInfo(x: number, y: number, z: number) {
+  const angle = Math.atan2(z, x);
 
-// Spiral stripe: colors voxels based on angular position offset by height,
-// creating a helical band that looks like overlapping pinecone scales.
-const SPIRAL_FREQ = 1.8; // how tightly the spiral winds up the cone
-const SPIRAL_BANDS = 7; // how many scale rows visible around the cone
+  const pA = ((((5 * angle) / (2 * Math.PI) + y * 0.5 + 100) % 1) + 1) % 1;
+  const pB = ((((8 * angle) / (2 * Math.PI) - y * 0.35 + 100) % 1) + 1) % 1;
 
-function voxelColor(v: Voxel): THREE.Color {
-  if (v.isStem) return new THREE.Color(0x0a0603);
-  if (v.y <= -3.5) return new THREE.Color(0x150b03);
+  const dA = Math.abs(pA - 0.5) * 2;
+  const dB = Math.abs(pB - 0.5) * 2;
 
-  // 0 = bottom of cone, 1 = tip
-  const t = (v.y + 4) / 9.0;
-
-  if (!v.isOuter) {
-    // Inner core: very dark brown, almost black
-    return new THREE.Color().setHSL(0.057, 0.82, 0.04 + t * 0.02);
-  }
-
-  // Spiral phase: angle around Y axis offset by height → helical stripes
-  const angle = Math.atan2(v.z, v.x); // -π to π
-  const phase = ((angle + v.y * SPIRAL_FREQ) * (SPIRAL_BANDS / (2 * Math.PI)) + 100) % 1;
-  const isScaleTip = phase < 0.55;
-
-  if (isScaleTip) {
-    // Scale face (lit): tan — yellow-brown, lower saturation, higher lightness
-    return new THREE.Color().setHSL(0.095, 0.45, 0.3 + t * 0.18);
-  } else {
-    // Shadow under overlapping scale: dark brown, high contrast against tan
-    return new THREE.Color().setHSL(0.057, 0.85, 0.06 + t * 0.04);
-  }
+  return { edgeDist: Math.max(dA, dB), dA, dB };
 }
 
-// ---------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------
+const GOLD = new THREE.Color(0xffd18a);
+const BROWN = new THREE.Color(0x97673a);
+
+function voxelColor(v: Voxel): THREE.Color {
+  // Height: 0 = base, 1 = tip
+  const t = (v.y + 6.0) / 9.5;
+
+  if (!v.isOuter) {
+    // Interior: warm amber protected from weathering, lighter in the middle
+    const midBoost = 1 - Math.abs(t - 0.45) * 1.5;
+    return new THREE.Color()
+      .lerpColors(BROWN, GOLD, 0.1 + Math.max(0, midBoost) * 0.15)
+      .multiplyScalar(0.35);
+  }
+
+  const { edgeDist } = getScaleInfo(v.x, v.y, v.z);
+  const r = Math.sqrt(v.x * v.x + v.z * v.z);
+  const maxR = 3.1;
+  const radialPos = Math.min(r / maxR, 1);
+
+  // Vertical gradient: base very dark, majority sits in rich brown, tip slightly lighter
+  let baseBlend: number;
+  if (t < 0.3) {
+    // Base: very dark
+    baseBlend = 0.95 + (0.3 - t) * 0.3;
+  } else if (t < 0.7) {
+    // Majority: rich brown (what the base used to look like)
+    baseBlend = 0.7 + (0.7 - t) * 0.4;
+  } else {
+    // Tip: slightly lighter but still brown-dominant
+    baseBlend = 0.7 - (t - 0.7) * 0.6;
+  }
+
+  // Outer scales are darker (more weathered) than inner-facing surfaces
+  baseBlend += radialPos * 0.15;
+
+  // Spiral-driven shingle pattern: alternating bands of light/shadow along fibonacci spirals
+  const angle = Math.atan2(v.z, v.x);
+  const spiralPhase = ((((13 * angle) / (2 * Math.PI) + v.y * 0.6 + 100) % 1) + 1) % 1;
+  const shingleShadow = spiralPhase < 0.35 ? 0.12 : 0;
+  baseBlend += shingleShadow;
+
+  // Scale tips: slightly lighter/more worn from abrasion
+  const scaleTipLighten = edgeDist < 0.15 ? (0.15 - edgeDist) * 0.6 : 0;
+  baseBlend -= scaleTipLighten;
+
+  baseBlend = Math.max(0, Math.min(1, baseBlend));
+  const color = new THREE.Color().lerpColors(GOLD, BROWN, baseBlend);
+
+  // Deep shadow in recessed gaps between scales
+  if (edgeDist > 0.78) {
+    color.multiplyScalar(0.2);
+  } else if (edgeDist > 0.6) {
+    const falloff = (edgeDist - 0.6) / 0.18;
+    color.multiplyScalar(1 - falloff * 0.7);
+  }
+
+  // Tip weathering: desaturate slightly
+  if (t > 0.75) {
+    const gray = (color.r + color.g + color.b) / 3;
+    const desat = (t - 0.75) * 1.5;
+    color.r += (gray - color.r) * desat;
+    color.g += (gray - color.g) * desat;
+    color.b += (gray - color.b) * desat;
+  }
+
+  return color;
+}
 
 export function PineconeViewer() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -132,10 +159,9 @@ export function PineconeViewer() {
 
     const scene = new THREE.Scene();
 
-    // Camera — 3/4 view, slightly elevated so you see the profile clearly
     const camera = new THREE.PerspectiveCamera(38, W / H, 0.1, 100);
-    camera.position.set(5, 2, 18);
-    camera.lookAt(0, -0.5, 0);
+    camera.position.set(5, -1.25, 18);
+    camera.lookAt(0, -1.25, 0);
 
     const renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
     renderer.setSize(W, H);
@@ -143,21 +169,22 @@ export function PineconeViewer() {
     renderer.setClearColor(0x000000, 0);
     el.appendChild(renderer.domElement);
 
-    // Lighting
-    scene.add(new THREE.HemisphereLight(0x4a2008, 0x060204, 1.5));
+    scene.add(new THREE.HemisphereLight(0x6a3a10, 0x0a0604, 1.2));
 
-    const torch = new THREE.DirectionalLight(0xffaa40, 3.2);
-    torch.position.set(5, 7, 6);
-    scene.add(torch);
+    const main = new THREE.DirectionalLight(0xffe0b0, 2.8);
+    main.position.set(5, 7, 6);
+    scene.add(main);
 
-    // Cool rim from behind — separates silhouette from dark background
-    const rim = new THREE.DirectionalLight(0x2040a0, 0.6);
+    const fill = new THREE.DirectionalLight(0x8a6030, 0.5);
+    fill.position.set(-4, 2, 4);
+    scene.add(fill);
+
+    const rim = new THREE.DirectionalLight(0x4a3020, 0.4);
     rim.position.set(-5, 0, -8);
     scene.add(rim);
 
-    // InstancedMesh
     const geo = new THREE.BoxGeometry(VOXEL, VOXEL, VOXEL);
-    const mat = new THREE.MeshStandardMaterial({ roughness: 0.87, metalness: 0 });
+    const mat = new THREE.MeshStandardMaterial({ roughness: 0.85, metalness: 0 });
     const mesh = new THREE.InstancedMesh(geo, mat, VOXELS.length);
 
     const dummy = new THREE.Object3D();
@@ -170,11 +197,11 @@ export function PineconeViewer() {
       if (v.isOuter) {
         const r = Math.sqrt(v.x * v.x + v.z * v.z);
         if (r > 0) {
-          // Push outer voxels outward to create scale relief
-          const push = 0.18;
-          px = v.x + (v.x / r) * push;
-          pz = v.z + (v.z / r) * push;
-          py = v.y + 0.06; // slight upward lean, like scales opening
+          const { edgeDist } = getScaleInfo(v.x, v.y, v.z);
+          const push = 0.22 * (1 - edgeDist);
+          px += (v.x / r) * push;
+          pz += (v.z / r) * push;
+          py += 0.05 * (1 - edgeDist);
         }
       }
 
@@ -189,10 +216,8 @@ export function PineconeViewer() {
 
     const group = new THREE.Group();
     group.add(mesh);
-    // Vertical center: profile spans y=-5 to y=4, midpoint ≈ -0.5
-    group.position.y = 0.5;
-    // Very slight static tilt so you see the 3D profile even when facing front
-    group.rotation.z = 0.12;
+    group.position.y = 0;
+    group.rotation.z = 0.08;
     scene.add(group);
 
     let animId: number;
@@ -201,8 +226,8 @@ export function PineconeViewer() {
     const animate = () => {
       animId = requestAnimationFrame(animate);
       const t = (Date.now() - start) * 0.001;
-      group.rotation.y = t * 0.15; // slow and contemplative
-      group.position.y = 0.5 + Math.sin(t * 0.45) * 0.1;
+      group.rotation.y = t * 0.15;
+      group.position.y = Math.sin(t * 0.45) * 0.1;
       renderer.render(scene, camera);
     };
     animate();
