@@ -5,6 +5,7 @@ const STEP = 0.5;
 const VOXEL = 0.46;
 
 const PROFILE: [number, number][] = [
+  [-6.5, 0.0], // stem
   [-6.0, 0.0],
   [-5.5, 0.7],
   [-5.0, 1.4],
@@ -24,7 +25,6 @@ const PROFILE: [number, number][] = [
   [2.0, 1.3],
   [2.5, 0.8],
   [3.0, 0.4],
-  [3.5, 0.0],
 ];
 
 interface Voxel {
@@ -32,20 +32,24 @@ interface Voxel {
   y: number;
   z: number;
   isOuter: boolean;
+  isStem: boolean;
 }
 
 function buildVoxels(): Voxel[] {
-  const raw: [number, number, number][] = [];
+  const raw: [number, number, number, boolean][] = [];
 
   for (const [y, maxR] of PROFILE) {
-    if (maxR === 0) continue;
+    if (maxR === 0) {
+      raw.push([0, y, 0, true]);
+      continue;
+    }
     const extent = Math.ceil(maxR / STEP);
     for (let xi = -extent; xi <= extent; xi++) {
       for (let zi = -extent; zi <= extent; zi++) {
         const x = xi * STEP;
         const z = zi * STEP;
         if (x * x + z * z <= maxR * maxR) {
-          raw.push([x, y, z]);
+          raw.push([x, y, z, false]);
         }
       }
     }
@@ -53,14 +57,16 @@ function buildVoxels(): Voxel[] {
 
   const posSet = new Set(raw.map(([x, y, z]) => `${x},${y},${z}`));
 
-  return raw.map(([x, y, z]) => {
-    const isOuter = [
-      [x + STEP, z],
-      [x - STEP, z],
-      [x, z + STEP],
-      [x, z - STEP],
-    ].some(([nx, nz]) => !posSet.has(`${nx},${y},${nz}`));
-    return { x, y, z, isOuter };
+  return raw.map(([x, y, z, isStem]) => {
+    const isOuter =
+      !isStem &&
+      [
+        [x + STEP, z],
+        [x - STEP, z],
+        [x, z + STEP],
+        [x, z - STEP],
+      ].some(([nx, nz]) => !posSet.has(`${nx},${y},${nz}`));
+    return { x, y, z, isOuter, isStem };
   });
 }
 
@@ -82,6 +88,8 @@ const GOLD = new THREE.Color(0xffd18a);
 const BROWN = new THREE.Color(0x97673a);
 
 function voxelColor(v: Voxel): THREE.Color {
+  if (v.isStem) return new THREE.Color(0x2a1508);
+
   // Height: 0 = base, 1 = tip
   const t = (v.y + 6.0) / 9.5;
 
