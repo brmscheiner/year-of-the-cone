@@ -225,7 +225,7 @@ export function PineconeViewer() {
     const group = new THREE.Group();
     group.add(mesh);
     group.position.y = 0;
-    group.rotation.z = 0.08;
+    group.rotation.z = 0.18;
     scene.add(group);
 
     let animId: number;
