@@ -1,23 +1,21 @@
 items:
-  - label: States Visited
-    value: 4
+  - label: States Visited - Not Just Drove Through
+    value: 14
   - label: Miles Driven
     value: 847
   - label: Miles Hiked
-    value: 23
+    value: 88
   - label: Feet Ascended
-    value: 14200
+    value: 22239
   - label: Trees Identified
     value: 47
   - label: Truck Nights
-    value: 8
+    value: 162
   - label: Bed Nights
-    value: 3
+    value: 28
   - label: Holes Pooped In
-    value: 11
+    value: 158
   - label: Parks Visited
-    value: 6
-  - label: Dollars Spent
-    value: 1243
+    value: 13
   - label: Books Read
     value: 2
