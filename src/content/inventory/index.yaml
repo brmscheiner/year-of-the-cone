@@ -1,162 +1,35 @@
 items:
-  - common: 'Douglas Fir'
-    scientific: 'Pseudotsuga menziesii'
-    date: 'March 2'
-    location: 'Santa Fe, NM'
+  - common: Jack Juniper
+    scientific: Juniperus jackii
+    date: August 26
+    location: Mt Hood National Forest, Ore
     notes: >-
-      Had to fight a badger for this one. Literally squared up with a honey badger
-      at the base of the tree while trying to collect a cone. It hissed, I hissed back,
-      and we both walked away with our dignity mostly intact.
+      The newest member of the Conifer Pantheon of the United States, and
+      specifically the Pacific Northwest.  This little matted, low-laying shrub
+      grows sparingly on exposed rocky outcrops on either volcanic or serpentine
+      soils from the Siskiyous of Southern Oregon and Northern California up the
+      spine of the Cascades to the Olympics of Northwestern Washington. 
 
 
-      The tree itself was stunning — about 200 feet tall with deeply furrowed bark.
-      Found it on a ridge trail just outside town. The three-pronged bracts on the
-      cones are unmistakable once you know what to look for.
-    youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
+      It shares a lot in common with, well, common juniper (Juniperus communis) and was for many years considered a variety of it (J. communis var. jackii).  However, research by Dr. R. P. Adams and others showed that it's actually more closely related to a similar juniper in Taiwan (J. formosana), and it likely is a long-lost population of this species that immigrated to North America in the belly of a bird. 
 
-  - common: 'Ponderosa Pine'
-    scientific: 'Pinus ponderosa'
-    date: 'March 8'
-    location: 'Flagstaff, AZ'
+
+      Look for low, sprawling shrubs with long tendrils snaking out from a matted base.  The leaves are curved like a small boat with the bottom nearly entirely covered in white stomatal bloom, and they almost lay right on top of the leaves further down the twig.  
+    youtube: https://youtu.be/-kQ90sT9Fgg?si=ewAmvXGT4oaBnZzI
+  - common: Pitch Pine
+    scientific: Pinus resinosa
+    date: June 7, 2026
+    location: Shawangunk Ridge, New York
     notes: >-
-      Bark smelled like butterscotch in the sun. Pressed my nose right up against
-      the cracks in the bark plates and just stood there breathing it in for a solid
-      five minutes. A couple of hikers walked by and gave me a look.
+      Pitch pine is the ultimate survivor.  Like most pines, it's able to grow
+      in the worst of the worst situations, and it's supremely adapted to
+      dealing with fire.  However, unlike other species, it didn't specialize in
+      a particular strategy to deal with fire; instead, it opted to get really
+      good at them all.
 
 
-      This grove was at about 7,000 feet elevation on the outskirts of town.
-      The puzzle-piece bark pattern on the older trees is incredible — orange and
-      black plates that look like they were hand-painted. Collected three cones,
-      all in great shape.
-    youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-
-  - common: 'Western Red Cedar'
-    scientific: 'Thuja plicata'
-    date: 'March 15'
-    location: 'Olympic National Park, WA'
-
-  - common: 'Sitka Spruce'
-    scientific: 'Picea sitchensis'
-    date: 'March 21'
-    location: 'Cannon Beach, OR'
-    notes: >-
-      Absolutely massive specimen right off the trail. The trunk was easily
-      ten feet in diameter. Needles are sharp and stiff — learned that the hard
-      way grabbing a branch without gloves.
+      Fires can occur in a given forest at lots of different intervals and different intensities.  Different trees will adapt to these conditions accordingly. Ponderosa, Jeffrey, slash, and longleaf pines all adapted to frequent, low-intensity fires; knobcone, pond, lodgepole, and bishop pines adapted to semi-frequent, high-intensity fires; and others, like redwoods, some junipers, and lots of broadleaf trees adapted by simply re-sprouting from their bases.  Pitch pine does all three.
 
 
-      Spent about an hour sketching it in the field journal. The fog was rolling
-      in off the coast and wrapping around the canopy in a way that made the
-      whole forest feel like a cathedral. One of those moments where you just
-      stop and sit for a while.
-
-  - common: 'Bigleaf Maple'
-    scientific: 'Acer macrophyllum'
-    date: 'April 3'
-    location: 'Portland, OR'
-    notes: 'Draped head to toe in moss. Looked more like a green ghost than a tree.'
-    youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-
-  - common: 'Lodgepole Pine'
-    scientific: 'Pinus contorta'
-    date: 'April 7'
-    location: 'Yellowstone, WY'
-
-  - common: 'Quaking Aspen'
-    scientific: 'Populus tremuloides'
-    date: 'April 9'
-    location: 'Yellowstone, WY'
-    notes: 'The whole hillside was one organism connected by roots.'
-
-  - common: 'Engelmann Spruce'
-    scientific: 'Picea engelmannii'
-    date: 'April 12'
-    location: 'Glacier National Park, MT'
-
-  - common: 'Western Larch'
-    scientific: 'Larix occidentalis'
-    date: 'April 14'
-    location: 'Glacier National Park, MT'
-    notes: 'A deciduous conifer. Needles were just starting to come in bright green.'
-
-  - common: 'Whitebark Pine'
-    scientific: 'Pinus albicaulis'
-    date: 'April 16'
-    location: 'Glacier National Park, MT'
-
-  - common: 'Grand Fir'
-    scientific: 'Abies grandis'
-    date: 'April 20'
-    location: "Coeur d'Alene, ID"
-    notes: 'Crushed the needles and they smelled like oranges.'
-
-  - common: 'Western White Pine'
-    scientific: 'Pinus monticola'
-    date: 'April 22'
-    location: 'McCall, ID'
-
-  - common: 'Mountain Hemlock'
-    scientific: 'Tsuga mertensiana'
-    date: 'April 25'
-    location: 'Mt. Rainier, WA'
-
-  - common: 'Noble Fir'
-    scientific: 'Abies procera'
-    date: 'April 28'
-    location: 'Mt. Hood, OR'
-    notes: 'Cones were standing straight up like candles on the branches.'
-
-  - common: 'Shore Pine'
-    scientific: 'Pinus contorta var. contorta'
-    date: 'May 1'
-    location: 'Bandon, OR'
-
-  - common: 'Port Orford Cedar'
-    scientific: 'Chamaecyparis lawsoniana'
-    date: 'May 3'
-    location: 'Gold Beach, OR'
-
-  - common: 'Coast Redwood'
-    scientific: 'Sequoia sempervirens'
-    date: 'May 6'
-    location: 'Jedediah Smith, CA'
-    notes: 'Stood at the base and could not see the top. Neck hurt from trying.'
-    youtube: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'
-
-  - common: 'Tanoak'
-    scientific: 'Notholithocarpus densiflorus'
-    date: 'May 8'
-    location: 'Prairie Creek, CA'
-
-  - common: 'Pacific Madrone'
-    scientific: 'Arbutus menziesii'
-    date: 'May 10'
-    location: 'Ashland, OR'
-    notes: 'Peeling red bark that feels cold and smooth like skin.'
-
-  - common: 'Incense Cedar'
-    scientific: 'Calocedrus decurrens'
-    date: 'May 13'
-    location: 'Crater Lake, OR'
-
-  - common: 'Sugar Pine'
-    scientific: 'Pinus lambertiana'
-    date: 'May 15'
-    location: 'Crater Lake, OR'
-    notes: 'Longest cones of any conifer. Found one on the ground that was nearly two feet.'
-
-  - common: 'Subalpine Fir'
-    scientific: 'Abies lasiocarpa'
-    date: 'May 18'
-    location: 'Mt. Bachelor, OR'
-
-  - common: 'Oregon White Oak'
-    scientific: 'Quercus garryana'
-    date: 'May 20'
-    location: 'Willamette Valley, OR'
-
-  - common: 'Red Alder'
-    scientific: 'Alnus rubra'
-    date: 'May 22'
-    location: 'Tillamook, OR'
-    notes: 'Fixes nitrogen in the soil. The bark makes a red dye.'
+      Splendidly able to survive in the varied and intense landscape of New England and the Appalachian Mountains, pitch pine simply outsmarts other trees and creates some of the most picturesque stands on the region. 
+    youtube: https://youtu.be/64pbYjPLHgA?si=F6PW1JH4Z8fy7SDJ
